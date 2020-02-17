@@ -60,7 +60,8 @@ function BlockList({ blocks }: any) {
             }
 
             // Calculate difference of block timestamp from that of parent.
-            const timeDifferenceFromParent = (index === sortedBlocks.length - 1) ? 0 : hexToNumber(b.timestamp) - hexToNumber(sortedBlocks[index + 1].timestamp);
+            const timeDifferenceFromParent = (index === sortedBlocks.length - 1) ? 0 : (b.timestamp - sortedBlocks[index + 1].timestamp);
+            console.log(b.timestamp);
 
             return (
               <TableRow key={b.number} style={authorHashStyle}>
@@ -88,7 +89,7 @@ function BlockList({ blocks }: any) {
                   </Link>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}&nbsp;<sub>({timeDifferenceFromParent > 0 ? `+${timeDifferenceFromParent}` : `-${timeDifferenceFromParent}`}s)</sub></Typography>
+                  <Typography>{t("Timestamp Date", { date: b.timestamp })}&nbsp;<sub>({timeDifferenceFromParent > 0 ? `+${timeDifferenceFromParent}` : `-${timeDifferenceFromParent}`}s)</sub></Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <Tooltip title={t("Create Transactions", {count: txTypes.create})} placement="top">

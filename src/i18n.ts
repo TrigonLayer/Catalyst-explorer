@@ -39,7 +39,8 @@ i18n
           return;
         }
         const ln = momentMap[lng];
-        const result = moment(value).locale(ln || "en").format("MMMM Do YYYY, h:mm:ss a");
+        const result = moment(value*1000).locale(ln || "en").format("MMMM Do YYYY, h:mm:ss a");
+        console.log(result);
         return result as any;
       },
     },

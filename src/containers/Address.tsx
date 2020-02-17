@@ -77,9 +77,9 @@ const Address: React.FC<IProps> = ({ match, history }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
-  if (transactionCount === undefined || balance === undefined || code === undefined) {
-    return <CircularProgress />;
-  }
+  // if (transactionCount === undefined || balance === undefined || code === undefined) {
+  //   return <CircularProgress />;
+  // }
   return (
     <>
       <AddressView
