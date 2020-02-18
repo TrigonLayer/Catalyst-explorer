@@ -250,7 +250,7 @@ function App() {
                 </Tooltip>
                 <Tooltip title={t('Expedition Github')}>
                   <IconButton
-                    onClick={() => window.open('https://github.com/etclabscore/expedition')}
+                    onClick={() => window.open('https://github.com/catalyst-network/expedition')}
                   >
                     <CodeIcon />
                   </IconButton>
