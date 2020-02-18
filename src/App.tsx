@@ -97,7 +97,7 @@ function App() {
     } else {
       setSelectedNetworkState(networks[0]);
     }
-  }, [networks, query.network]);
+  }, [networks, query.network, query.rpcUrl]);
 
   useEffect(() => {
     if (selectedNetwork && selectedNetwork?.name !== query.network) {
@@ -107,7 +107,7 @@ function App() {
         search: `?network=${selectedNetwork.name}`,
       });
     }
-  }, [selectedNetwork, setQuery]);
+  }, [selectedNetwork, setQuery, query.network]);
 
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === 'service-runner') {

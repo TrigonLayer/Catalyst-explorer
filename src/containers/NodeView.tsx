@@ -22,10 +22,10 @@ export default function NodeView(props: any) {
       return;
     }
     if (blockNum > blockNumber) {
-      props.history.push(`/blocks/${blockNumber}`);
+      history.push(`/blocks/${blockNumber}`);
     }
     if (blockNum < 0) {
-      props.history.push('/blocks/0');
+      history.push('/blocks/0');
     }
   }, [blockNumber, blockNum, history]);
   if (blockNumber === undefined || blockNum > blockNumber) {

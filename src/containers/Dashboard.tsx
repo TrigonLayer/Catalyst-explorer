@@ -58,7 +58,7 @@ export default (props: any) => {
     if (!erpc || blockNumber === undefined) { return; }
     // erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
     web3.eth.getBlock(blockNumber, true).then(setBlock);
-  }, [blockNumber]);
+  }, [blockNumber, erpc, web3.eth]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === null) { return; }
@@ -72,7 +72,7 @@ export default (props: any) => {
       console.log(removeNull);
       setBlocks(removeNull);
     });
-  }, [blockNumber]);
+  }, [blockNumber, erpc]);
 
   // useInterval(() => {
   //   if (!erpc) { return; }

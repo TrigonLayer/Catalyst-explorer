@@ -31,7 +31,7 @@ export default function BlockListContainer(props: IProps) {
       console.log(removeNull);
       setBlocks(removeNull);
     });
-  }, [from, to]);
+  }, [from, to, erpc]);
 
   if (!blocks) {
     return <CircularProgress />;

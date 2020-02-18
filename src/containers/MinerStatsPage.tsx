@@ -47,10 +47,10 @@ export default (props: IProps) => {
       return;
     }
     if (blockNum > blockNumber) {
-      props.history.push(`/stats/miners/${blockNumber}`);
+      history.push(`/stats/miners/${blockNumber}`);
     }
     if (blockNum < 0) {
-      props.history.push('/stats/miners/0');
+      history.push('/stats/miners/0');
     }
   }, [blockNumber, blockNum, history]);
 
@@ -63,7 +63,7 @@ export default (props: IProps) => {
     ).then((bl) => {
       setBlocks(_.compact(bl));
     });
-  }, [from, to]);
+  }, [from, to, erpc]);
 
   if (!blocks || blockNumber === undefined || blockNum > blockNumber) {
     return (<CircularProgress />);

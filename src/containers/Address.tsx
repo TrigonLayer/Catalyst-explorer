@@ -74,7 +74,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       const sortedTxes: any = _.sortBy(filteredTxes, (tx: any) => hexToNumber(tx.blockNumber)).reverse();
       setTransactions(sortedTxes);
     });
-  }, [from, to]);
+  }, [from, to, address, erpc]);
 
   // if (transactionCount === undefined || balance === undefined || code === undefined) {
   //   return <CircularProgress />;
