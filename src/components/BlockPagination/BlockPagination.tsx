@@ -13,29 +13,34 @@ interface IProps {
   style?: any;
 }
 
-const BlockPagination: React.FC<IProps> = (props) => (
-  <Grid container>
-    <Grid container justify="flex-end">
-      <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
-        <ArrowBackIos />
-      </IconButton>
-      <IconButton onClick={props.onNext} disabled={props.disableNext}>
-        <ArrowForwardIos />
-      </IconButton>
+const BlockPagination: React.FC<IProps> = (props) => {
+  const {
+    onPrev, disablePrev, onNext, disableNext, to, from,
+  } = props;
+  return (
+    <Grid container>
+      <Grid container justify="flex-end">
+        <IconButton onClick={onPrev} disabled={disablePrev}>
+          <ArrowBackIos />
+        </IconButton>
+        <IconButton onClick={onNext} disabled={disableNext}>
+          <ArrowForwardIos />
+        </IconButton>
+      </Grid>
+      <Grid container justify="flex-end">
+        <Typography>
+          Showing
+          {(to - from) + 1}
+          {' '}
+          Block Range:
+          <b>{to}</b>
+          {' '}
+          -
+          {from}
+        </Typography>
+      </Grid>
     </Grid>
-    <Grid container justify="flex-end">
-      <Typography>
-        Showing
-        {(props.to - props.from) + 1}
-        {' '}
-        Block Range:
-        <b>{props.to}</b>
-        {' '}
-        -
-        {props.from}
-      </Typography>
-    </Grid>
-  </Grid>
-);
+  );
+};
 
 export default BlockPagination;

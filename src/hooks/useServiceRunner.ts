@@ -1,12 +1,14 @@
-import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
-import React, { Dispatch, useEffect } from "react";
-import { useQueryParam, StringParam } from "use-query-params";
+/* eslint-disable consistent-return */
+import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from '@etclabscore/jade-service-runner-client';
+import React, { Dispatch, useEffect } from 'react';
+import { useQueryParam, StringParam } from 'use-query-params';
 
-function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>, IAvailableServices[]] { //tslint:disable-line
+// eslint-disable-next-line max-len
+function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>, IAvailableServices[]] { // tslint:disable-line
   const [url, setUrl] = React.useState(defaultUrl);
   const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
   const [availableServices, setAvailableServices] = React.useState<IAvailableServices[]>([]);
-  const [rpcUrlQuery] = useQueryParam("rpcUrl", StringParam);
+  const [rpcUrlQuery] = useQueryParam('rpcUrl', StringParam);
   React.useEffect(() => {
     if (process.env.REACT_APP_ETH_RPC_URL || rpcUrlQuery) {
       return;
@@ -22,13 +24,13 @@ function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, s
     }
     let rpc;
     try {
-      const protocol = parsedUrl.protocol.split(":")[0] as any;
-      const fallbackPort = protocol === "http" ? 80 : 443;
+      const protocol = parsedUrl.protocol.split(':')[0] as any;
+      const fallbackPort = protocol === 'http' ? 80 : 443;
       const port = parseInt(parsedUrl.port, 10);
       rpc = new JadeServiceRunner({
         transport: {
           host: parsedUrl.hostname,
-          port: port ? port : fallbackPort,
+          port: port || fallbackPort,
           type: protocol,
         },
       });
@@ -43,11 +45,10 @@ function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, s
         serviceRunner.rpc.requestManager.close();
       }
     };
- // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   useEffect(() => {
     if (serviceRunner) {
-      serviceRunner.listServices("available").then(setAvailableServices);
+      serviceRunner.listServices('available').then(setAvailableServices);
     }
   }, [serviceRunner]);
   return [serviceRunner, url, setUrl, availableServices];

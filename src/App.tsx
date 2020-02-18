@@ -40,9 +40,9 @@ import NetworkDropdown from './components/NetworkDropdown/NetworkDropdown';
 import { createPreserveQueryHistory } from './helpers/createPreserveHistory';
 import BlockRawContainer from './containers/BlockRawContainer';
 import TransactionRawContainer from './containers/TransactionRawContainer';
-import catalystLogo from './catalyst-icon.jpeg';
 import MinerStatsPage from './containers/MinerStatsPage';
 
+const catalystLogo = require('./catalyst-icon.jpeg');
 
 const history = createPreserveQueryHistory(createBrowserHistory, ['network', 'rpcUrl'])();
 

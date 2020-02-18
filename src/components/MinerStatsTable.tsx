@@ -1,9 +1,11 @@
-import React from "react";
-import { Table, TableRow, TableCell, TableHead, TableBody, Typography, Button } from "@material-ui/core";
-import { hexToString, hexToNumber } from "@etclabscore/eserialize";
-import { useHistory } from "react-router-dom";
-import _ from "lodash";
-import greenColor from "@material-ui/core/colors/green";
+import React from 'react';
+import {
+  Table, TableRow, TableCell, TableHead, TableBody, Typography, Button,
+} from '@material-ui/core';
+import { hexToString, hexToNumber } from '@etclabscore/eserialize';
+import { useHistory } from 'react-router-dom';
+import _ from 'lodash';
+import greenColor from '@material-ui/core/colors/green';
 
 const blockTopMiners = (blocks: any[]) => {
   const result = _(blocks).chain()
@@ -21,13 +23,9 @@ const blockTopMiners = (blocks: any[]) => {
 const groupByMiner = (blocks: any[]) => {
   const result = _.chain(blocks)
     .groupBy((b: any) => b.miner)
-    .map((value, key) => {
-      return {
-        [key]: _.groupBy(value, (item) => {
-          return hexToString(item.extraData);
-        }),
-      };
-    })
+    .map((value, key) => ({
+      [key]: _.groupBy(value, (item) => hexToString(item.extraData)),
+    }))
     .value();
   return result;
 };
@@ -42,7 +40,7 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
   const groupedMiners = Object.assign({}, ...groupByMiner(blocks));
   return (
     <Table aria-label="simple table">
-      <TableHead >
+      <TableHead>
         <TableRow>
           <TableCell>Blocks Mined</TableCell>
           <TableCell>Address</TableCell>
@@ -70,7 +68,7 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
                             <Button
                               variant="outlined"
                               style={{
-                                margin: "3px",
+                                margin: '3px',
                                 background: `linear-gradient(to right, ${greenColor[600]} 0% ${percentFull}%, transparent ${percentFull}% 100%)`,
                               }}
                               onClick={() => history.push(`/block/${block.hash}`)}
@@ -90,7 +88,7 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
           </TableRow>
         ))}
       </TableBody>
-    </Table >
+    </Table>
   );
 };
 

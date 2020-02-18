@@ -1,2 +1,3 @@
-import TxView from "./TxView";
+import TxView from './TxView';
+
 export default TxView;

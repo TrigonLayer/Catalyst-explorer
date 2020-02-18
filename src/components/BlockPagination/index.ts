@@ -1,2 +1,3 @@
-import BlockPagination from "./BlockPagination";
+import BlockPagination from './BlockPagination';
+
 export default BlockPagination;

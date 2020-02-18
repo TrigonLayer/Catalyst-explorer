@@ -1,5 +1,5 @@
-import BigNumber from "bignumber.js";
-import { hashesToGH } from "../formatters";
+import BigNumber from 'bignumber.js';
+import { hashesToGH } from '../formatters';
 
 export default function HashRate(props: any) {
   const { block, blockTime } = props;

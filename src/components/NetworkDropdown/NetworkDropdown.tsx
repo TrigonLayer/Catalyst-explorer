@@ -1,7 +1,9 @@
-import * as React from "react";
-import { Menu, MenuItem, Tooltip, Button, Typography } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-import { TNetwork } from "../../helpers/availableServiceToNetwork";
+import * as React from 'react';
+import {
+  Menu, MenuItem, Tooltip, Button, Typography,
+} from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { TNetwork } from '../../helpers/availableServiceToNetwork';
 
 interface IProps {
   networks: TNetwork[];
@@ -11,7 +13,7 @@ interface IProps {
 
 const NetworkDropdown: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
-  const { selectedNetwork, setSelectedNetwork } = props;
+  const { selectedNetwork, setSelectedNetwork, networks } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,7 +34,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
   return (
     <>
 
-      <Tooltip title={t("Change Network")}>
+      <Tooltip title={t('Change Network')}>
         <Button onClick={handleClick}>
           {selectedNetwork && selectedNetwork.name}
         </Button>
@@ -44,7 +46,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {props.networks.map((network, i) => (
+        {networks.map((network, i) => (
           <MenuItem
             selected={selectedNetwork && selectedNetwork.name === network.name}
             onClick={(event) => handleMenuItemClick(network)}
