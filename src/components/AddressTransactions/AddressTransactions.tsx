@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Typography, IconButton, Grid } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-import TxList from "../TxList";
-import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import * as React from 'react';
+import { Typography, IconButton, Grid } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
+import TxList from '../TxList';
 
 export interface IProps {
   transactions: any[];
@@ -17,25 +17,44 @@ export interface IProps {
 
 const AddressTransactions: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
+  const {
+    style,
+    onPrev,
+    disablePrev,
+    onNext,
+    disableNext,
+    to,
+    from,
+    transactions,
+  } = props;
   return (
-    <div style={props.style}>
+    <div style={style}>
       <Grid container justify="flex-end">
-        <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
+        <IconButton onClick={onPrev} disabled={disablePrev}>
           <ArrowBackIos />
         </IconButton>
-        <IconButton onClick={props.onNext} disabled={props.disableNext}>
+        <IconButton onClick={onNext} disabled={disableNext}>
           <ArrowForwardIos />
         </IconButton>
       </Grid>
       <Grid container justify="flex-end">
-        <Typography>Showing block range: {props.to} - {props.from}</Typography>
+        <Typography>
+          Showing block range:
+          {' '}
+          {to}
+          {' '}
+          -
+          {' '}
+          {from}
+        </Typography>
       </Grid>
-      <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
-      {(!props.transactions || props.transactions.length === 0) &&
-        <Grid container style={{padding: "15px"}}>
-          <Typography>{t("No Transactions for this block range.")}</Typography>
+      <TxList transactions={transactions || []} showBlockNumber />
+      {(!transactions || transactions.length === 0)
+        && (
+        <Grid container style={{ padding: '15px' }}>
+          <Typography>{t('No Transactions for this block range.')}</Typography>
         </Grid>
-      }
+        )}
     </div>
   );
 };

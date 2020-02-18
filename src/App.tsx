@@ -1,50 +1,65 @@
-import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles";
-import Link from "@material-ui/core/Link";
-import React, { Dispatch, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
-import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
-import useDarkMode from "use-dark-mode";
-import "./App.css";
-import Address from "./containers/Address";
-import Block from "./containers/Block";
-import Dashboard from "./containers/Dashboard";
-import NodeView from "./containers/NodeView";
-import Transaction from "./containers/Transaction";
-import ConfigurationMenu from "./containers/ConfigurationMenu";
-import { darkTheme, lightTheme } from "./themes/jadeTheme";
-import Brightness3Icon from "@material-ui/icons/Brightness3";
-import NotesIcon from "@material-ui/icons/Notes";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import CodeIcon from "@material-ui/icons/Code";
-import ServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
-import availableServiceToNetwork from "./helpers/availableServiceToNetwork";
+/* eslint-disable no-unused-vars */
 
-import useInterval from "use-interval";
-import useServiceRunnerStore from "./stores/useServiceRunnerStore";
-import useMultiGethStore from "./stores/useMultiGethStore";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
-import { useTranslation } from "react-i18next";
-import LanguageMenu from "./containers/LanguageMenu";
-import { createBrowserHistory } from "history";
-import NetworkDropdown from "./components/NetworkDropdown/NetworkDropdown";
-import { StringParam, QueryParamProvider, useQueryParams } from "use-query-params";
-import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
-import BlockRawContainer from "./containers/BlockRawContainer";
-import TransactionRawContainer from "./containers/TransactionRawContainer";
-import catalystLogo from "./catalyst-icon.jpeg";
-import MinerStatsPage from "./containers/MinerStatsPage";
+import {
+  AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip,
+} from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+import Link from '@material-ui/core/Link';
+import React, {
+  Dispatch, ChangeEvent, KeyboardEvent, useState, useEffect,
+} from 'react';
+import {
+  Link as RouterLink, Router, Route, Switch,
+} from 'react-router-dom';
+import useDarkMode from 'use-dark-mode';
+import './App.css';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import NotesIcon from '@material-ui/icons/Notes';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import CodeIcon from '@material-ui/icons/Code';
+import ServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from '@etclabscore/jade-service-runner-client';
+import useInterval from 'use-interval';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import ETHJSONSpec from '@etclabscore/ethereum-json-rpc-specification/openrpc.json';
+import { useTranslation } from 'react-i18next';
+import { createBrowserHistory } from 'history';
+import { StringParam, QueryParamProvider, useQueryParams } from 'use-query-params';
+import Address from './containers/Address';
+import Block from './containers/Block';
+import Dashboard from './containers/Dashboard';
+import NodeView from './containers/NodeView';
+import Transaction from './containers/Transaction';
+import ConfigurationMenu from './containers/ConfigurationMenu';
+import { darkTheme, lightTheme } from './themes/jadeTheme';
+import availableServiceToNetwork from './helpers/availableServiceToNetwork';
 
-const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
+import useServiceRunnerStore from './stores/useServiceRunnerStore';
+import useMultiGethStore from './stores/useMultiGethStore';
+import LanguageMenu from './containers/LanguageMenu';
+import NetworkDropdown from './components/NetworkDropdown/NetworkDropdown';
+import { createPreserveQueryHistory } from './helpers/createPreserveHistory';
+import BlockRawContainer from './containers/BlockRawContainer';
+import TransactionRawContainer from './containers/TransactionRawContainer';
+import catalystLogo from './catalyst-icon.jpeg';
+import MinerStatsPage from './containers/MinerStatsPage';
 
-function App(props: any) {
+
+const history = createPreserveQueryHistory(createBrowserHistory, ['network', 'rpcUrl'])();
+
+function App() {
   const { t } = useTranslation();
   const darkMode = useDarkMode();
   const [search, setSearch] = useState();
   const theme = darkMode.value ? darkTheme : lightTheme;
 
   const [selectedNetwork, setSelectedNetworkState] = useState();
-  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl, availableServices]: [ServiceRunner, string, any, IAvailableServices[]] = useServiceRunnerStore(); //tslint:disable-line
+  const [serviceRunner,
+    serviceRunnerUrl,
+    setServiceRunnerUrl,
+    availableServices]: [ServiceRunner,
+       string,
+        any,
+         IAvailableServices[]] = useServiceRunnerStore();
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
   const [networks, setNetworks] = useState<any[]>([]);
 
@@ -82,7 +97,6 @@ function App(props: any) {
     } else {
       setSelectedNetworkState(networks[0]);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [networks, query.network]);
 
   useEffect(() => {
@@ -93,13 +107,12 @@ function App(props: any) {
         search: `?network=${selectedNetwork.name}`,
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNetwork, setQuery]);
 
   const handleConfigurationChange = (type: string, url: string) => {
-    if (type === "service-runner") {
+    if (type === 'service-runner') {
       setServiceRunnerUrl(url);
-    } else if (type === "ethereum-rpc") {
+    } else if (type === 'ethereum-rpc') {
       setMultiGethUrlOverride(url);
     }
   };
@@ -172,25 +185,26 @@ function App(props: any) {
         <AppBar position="sticky" color="default" elevation={0}>
           <Toolbar>
             <Grid justify="space-between" alignItems="center" alignContent="center" container>
-              <Grid item style={{ marginTop: "8px" }}>
+              <Grid item style={{ marginTop: '8px' }}>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={"/"}>
+                    <RouterLink className={className} to="/">
                       {children}
                     </RouterLink>
-                  )}>
+                  )}
+                >
                   <Grid container>
                     <Grid>
                       <img
                         alt="expedition-logo"
                         height="30"
-                        style={{ marginRight: "10px" }}
+                        style={{ marginRight: '10px' }}
                         src={catalystLogo}
                       />
                     </Grid>
                     <Grid>
                       <Typography color="textSecondary" variant="h6">
-                        {t("Testnet")}
+                        {t('Testnet')}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -198,7 +212,7 @@ function App(props: any) {
               </Grid>
               <Grid item md={6} xs={12}>
                 <InputBase
-                  placeholder={t("Enter an Address, Transaction Hash or Block Number")}
+                  placeholder={t('Enter an Address, Transaction Hash or Block Number')}
                   onKeyDown={
                     (event: KeyboardEvent<HTMLInputElement>) => {
                       if (event.keyCode === 13) {
@@ -213,10 +227,10 @@ function App(props: any) {
                   }
                   fullWidth
                   style={{
-                    background: "rgba(0,0,0,0.1)",
-                    borderRadius: "4px",
-                    padding: "5px 10px 0px 10px",
-                    marginRight: "5px",
+                    background: 'rgba(0,0,0,0.1)',
+                    borderRadius: '4px',
+                    padding: '5px 10px 0px 10px',
+                    marginRight: '5px',
                   }}
                 />
               </Grid>
@@ -227,24 +241,22 @@ function App(props: any) {
                   selectedNetwork={selectedNetwork}
                 />
                 <LanguageMenu />
-                <Tooltip title={t("JSON-RPC API Documentation")}>
+                <Tooltip title={t('JSON-RPC API Documentation')}>
                   <IconButton
-                    onClick={() =>
-                      window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
-                    }>
+                    onClick={() => window.open('https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json')}
+                  >
                     <NotesIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t("Expedition Github")}>
+                <Tooltip title={t('Expedition Github')}>
                   <IconButton
-                    onClick={() =>
-                      window.open("https://github.com/etclabscore/expedition")
-                    }>
+                    onClick={() => window.open('https://github.com/etclabscore/expedition')}
+                  >
                     <CodeIcon />
                   </IconButton>
                 </Tooltip>
                 <ConfigurationMenu onChange={handleConfigurationChange} />
-                <Tooltip title={t("Toggle Dark Mode")}>
+                <Tooltip title={t('Toggle Dark Mode')}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                   </IconButton>
@@ -253,25 +265,25 @@ function App(props: any) {
             </Grid>
           </Toolbar>
         </AppBar>
-        <div style={{ margin: "0px 25px 0px 25px" }}>
+        <div style={{ margin: '0px 25px 0px 25px' }}>
           <QueryParamProvider ReactRouterRoute={Route}>
             <CssBaseline />
             <Switch>
-              <Route path={"/"} component={Dashboard} exact={true} />
-              <Route path={"/stats/miners"} component={MinerStatsPage} exact={true} />
-              <Route path={"/stats/miners/:block"} component={MinerStatsPage} />
-              <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
-              <Route path={"/block/:hash"} component={Block} />
-              <Route path={"/blocks/:number"} component={NodeView} />
-              <Route path={"/tx/:hash/raw"} component={TransactionRawContainer} />
-              <Route path={"/tx/:hash"} component={Transaction} />
-              <Route path={"/address/:address/:block"} component={Address} />
-              <Route path={"/address/:address"} component={Address} />
+              <Route path="/" component={Dashboard} exact />
+              <Route path="/stats/miners" component={MinerStatsPage} exact />
+              <Route path="/stats/miners/:block" component={MinerStatsPage} />
+              <Route path="/block/:hash/raw" component={BlockRawContainer} />
+              <Route path="/block/:hash" component={Block} />
+              <Route path="/blocks/:number" component={NodeView} />
+              <Route path="/tx/:hash/raw" component={TransactionRawContainer} />
+              <Route path="/tx/:hash" component={Transaction} />
+              <Route path="/address/:address/:block" component={Address} />
+              <Route path="/address/:address" component={Address} />
             </Switch>
           </QueryParamProvider>
         </div>
-      </ThemeProvider >
-    </Router >
+      </ThemeProvider>
+    </Router>
   );
 }
 

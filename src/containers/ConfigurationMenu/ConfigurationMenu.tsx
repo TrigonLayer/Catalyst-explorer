@@ -1,8 +1,11 @@
-import * as React from "react";
-import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon, Tooltip } from "@material-ui/core"; //tslint:disable-line
-import { NavigateNext, NavigateBefore } from "@material-ui/icons";
-import SettingsIcon from "@material-ui/icons/Settings";
-import { useTranslation } from "react-i18next";
+/* eslint-disable react/prop-types */
+import * as React from 'react';
+import {
+  IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon, Tooltip,
+} from '@material-ui/core'; // tslint:disable-line
+import { NavigateNext, NavigateBefore } from '@material-ui/icons';
+import SettingsIcon from '@material-ui/icons/Settings';
+import { useTranslation } from 'react-i18next';
 
 interface IConfigurationMenuProps {
   onChange: (type: string, url: string) => any;
@@ -12,12 +15,12 @@ interface IPagedMenuProps {
   onChange: (type: string, url: string) => any;
 }
 
-const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
-  const [selected, setSelected] = React.useState<"service-runner" | "ethereum-rpc" | null>(null);
+const PagedMenu: React.FC<IPagedMenuProps> = ({ onChange }) => {
+  const [selected, setSelected] = React.useState<'service-runner' | 'ethereum-rpc' | null>(null);
   const { t } = useTranslation();
   const nameMap = {
-    "service-runner": t("Service Runner RPC Url"),
-    "ethereum-rpc": t("Ethereum RPC Url"),
+    'service-runner': t('Service Runner RPC Url'),
+    'ethereum-rpc': t('Ethereum RPC Url'),
   };
 
   if (selected) {
@@ -28,13 +31,13 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
             <NavigateBefore />
           </ListItemIcon>
           <ListItemText>
-            {t("Back")}
+            {t('Back')}
           </ListItemText>
         </MenuItem>
         <Input
-          onChange={(e) => props.onChange(selected, e.currentTarget.value)}
+          onChange={(e) => onChange(selected, e.currentTarget.value)}
           placeholder={nameMap[selected]}
-          fullWidth={true}
+          fullWidth
         />
       </>
     );
@@ -42,28 +45,27 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
 
   return (
     <>
-      <MenuItem onClick={() => setSelected("service-runner")}>
+      <MenuItem onClick={() => setSelected('service-runner')}>
         <ListItemText>
-          {t("Service Runner RPC")}
-          </ListItemText>
+          {t('Service Runner RPC')}
+        </ListItemText>
         <ListItemSecondaryAction>
           <NavigateNext />
         </ListItemSecondaryAction>
       </MenuItem>
-      <MenuItem onClick={() => setSelected("ethereum-rpc")}>
+      <MenuItem onClick={() => setSelected('ethereum-rpc')}>
         <ListItemText>
-          {t("Ethereum RPC")}
-          </ListItemText>
+          {t('Ethereum RPC')}
+        </ListItemText>
         <ListItemSecondaryAction>
           <NavigateNext />
         </ListItemSecondaryAction>
       </MenuItem>
     </>
   );
-
 };
 
-const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
+const ConfigurationMenu: React.FC<IConfigurationMenuProps> = ({ onChange }) => {
   const [anchorEl, setAnchorEl] = React.useState<any>(null);
   const { t } = useTranslation();
   const open = !!anchorEl;
@@ -78,7 +80,7 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
 
   return (
     <>
-      <Tooltip title={t("Configuration")}>
+      <Tooltip title={t('Configuration')}>
         <IconButton
           aria-label="Configuration"
           aria-controls="menu-appbar"
@@ -86,7 +88,7 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
           onClick={handleMenu}
           color="inherit"
         >
-          <SettingsIcon color="action"/>
+          <SettingsIcon color="action" />
         </IconButton>
       </Tooltip>
       <Menu
@@ -97,20 +99,20 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
         open={open}
         PaperProps={{
           style: {
-            width: "250px",
+            width: '250px',
           },
         }}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
+          vertical: 'bottom',
+          horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         }}
         onClose={handleClose}
       >
-        <PagedMenu onChange={props.onChange}></PagedMenu>
+        <PagedMenu onChange={onChange} />
       </Menu>
     </>
   );

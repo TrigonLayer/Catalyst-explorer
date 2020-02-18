@@ -1,2 +1,3 @@
-import ConfigurationMenu from "./ConfigurationMenu";
+import ConfigurationMenu from './ConfigurationMenu';
+
 export default ConfigurationMenu;

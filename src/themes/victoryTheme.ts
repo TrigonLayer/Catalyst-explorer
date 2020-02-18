@@ -1,21 +1,21 @@
-import { grey } from "@material-ui/core/colors";
-import { Theme } from "@material-ui/core";
+import { grey } from '@material-ui/core/colors';
+import { Theme } from '@material-ui/core';
 
 const sansSerif = "'Roboto', 'Helvetica Neue', Helvetica, sans-serif";
 
 const baseLabelStyles = {
   fontFamily: sansSerif,
   fontSize: 12,
-  letterSpacing: "normal",
+  letterSpacing: 'normal',
   padding: 10,
   fill: grey[400],
-  stroke: "transparent",
+  stroke: 'transparent',
   strokeWidth: 0,
 };
 
 const centeredLabelStyles = {
   ...baseLabelStyles,
-  textAnchor: "middle",
+  textAnchor: 'middle',
 };
 
 const getTheme = (theme: Theme) => ({
@@ -29,7 +29,7 @@ const getTheme = (theme: Theme) => ({
         ...centeredLabelStyles,
       },
       grid: {
-        stroke: "none",
+        stroke: 'none',
       },
       ticks: {
         stroke: grey[400],

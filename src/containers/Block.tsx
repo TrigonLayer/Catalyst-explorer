@@ -1,8 +1,8 @@
-import { CircularProgress } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import * as React from "react";
-import BlockView from "../components/BlockView";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import BlockView from '../components/BlockView';
 
 export default function Block(props: any) {
   const { match: { params: { hash } } } = props;

@@ -1,11 +1,12 @@
-import { CircularProgress } from "@material-ui/core";
-import * as React from "react";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import TxRaw from "../components/TxRaw/TxRaw";
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import TxRaw from '../components/TxRaw/TxRaw';
 
 export default function TransactionRawContainer(props: any) {
-  const hash = props.match.params.hash;
+  const { match } = props;
+  const { hash } = match.params;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [transaction, setTransaction] = React.useState();
   const [receipt, setReceipt] = React.useState();

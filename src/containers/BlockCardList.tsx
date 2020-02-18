@@ -1,10 +1,10 @@
-import { CircularProgress, Grid } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import * as React from "react";
-import getBlocks from "../helpers";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import BlockCard from "../components/BlockCard";
-import { hexToNumber } from "@etclabscore/eserialize";
+import { CircularProgress, Grid } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import { hexToNumber } from '@etclabscore/eserialize';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import getBlocks from '../helpers';
+import BlockCard from '../components/BlockCard';
 
 interface IProps {
   from: number;
@@ -24,11 +24,10 @@ export default function BlockCardListContainer(props: IProps) {
         setBlocks(bs);
       });
     }
+    // eslint-disable-next-line consistent-return
     return () => {
       isSubscribed = false;
-      return;
     };
- // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
   if (!blocks) {
@@ -37,15 +36,12 @@ export default function BlockCardListContainer(props: IProps) {
   return (
     <Grid container spacing={2} style={style}>
       {
-        blocks.sort((a: any, b: any) => {
-          return hexToNumber(b.number) - hexToNumber(a.number);
-        }).map((block: any) => {
-          return (
+        blocks.sort((a: any,
+          b: any) => hexToNumber(b.number) - hexToNumber(a.number)).map((block: any) => (
             <Grid item xs={12} sm={4} key={block.hash}>
               <BlockCard block={block} />
             </Grid>
-          );
-        })
+        ))
       }
     </Grid>
   );

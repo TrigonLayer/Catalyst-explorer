@@ -1,2 +1,3 @@
-import BlockCard from "./BlockCard";
+import BlockCard from './BlockCard';
+
 export default BlockCard;

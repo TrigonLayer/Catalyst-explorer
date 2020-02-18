@@ -1,2 +1,3 @@
-import AddressTransactions from "./AddressTransactions";
+import AddressTransactions from './AddressTransactions';
+
 export default AddressTransactions;

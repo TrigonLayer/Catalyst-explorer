@@ -1,10 +1,10 @@
-import { CircularProgress } from "@material-ui/core";
-import * as React from "react";
-import { useBlockNumber } from "../helpers";
-import BlockList from "./BlockList";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import { useParams } from "react-router-dom";
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import { useParams } from 'react-router-dom';
+import { useBlockNumber } from '../helpers';
+import BlockList from './BlockList';
+import useMultiGethStore from '../stores/useMultiGethStore';
 
 interface IUrlParams {
   number: string | undefined;
@@ -15,6 +15,7 @@ export default function NodeView(props: any) {
   const [blockNumber] = useBlockNumber(erpc);
   const urlParams = useParams<IUrlParams>();
   const blockNum = (urlParams && urlParams.number !== undefined) ? urlParams.number : blockNumber;
+  const { history } = props;
 
   React.useEffect(() => {
     if (blockNum === undefined || blockNumber === undefined) {
@@ -24,9 +25,9 @@ export default function NodeView(props: any) {
       props.history.push(`/blocks/${blockNumber}`);
     }
     if (blockNum < 0) {
-      props.history.push("/blocks/0");
+      props.history.push('/blocks/0');
     }
-  }, [blockNumber, blockNum, props.history]);
+  }, [blockNumber, blockNum, history]);
   if (blockNumber === undefined || blockNum > blockNumber) {
     return (<CircularProgress />);
   }

@@ -1,7 +1,9 @@
-import * as React from "react";
-import { Menu, MenuItem, Tooltip, Button } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-import { supportedLanguages, reverseSupportedLanguages } from "../../i18n";
+import * as React from 'react';
+import {
+  Menu, MenuItem, Tooltip, Button,
+} from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { supportedLanguages, reverseSupportedLanguages } from '../../i18n';
 
 const LanguageMenu: React.FC = (props) => {
   const { t, i18n } = useTranslation();
@@ -23,7 +25,7 @@ const LanguageMenu: React.FC = (props) => {
 
   return (
     <>
-      <Tooltip title={t("Change Language")}>
+      <Tooltip title={t('Change Language')}>
         <Button onClick={handleClick}>{supportedLanguages[i18n.language]}</Button>
       </Tooltip>
       <Menu

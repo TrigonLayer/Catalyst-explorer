@@ -1,2 +1,3 @@
-import LanguageMenu from "./LanguageMenu";
+import LanguageMenu from './LanguageMenu';
+
 export default LanguageMenu;

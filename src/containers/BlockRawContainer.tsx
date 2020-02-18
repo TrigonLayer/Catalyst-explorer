@@ -1,8 +1,8 @@
-import { CircularProgress } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import * as React from "react";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import BlockRaw from "../components/BlockRaw";
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import BlockRaw from '../components/BlockRaw';
 
 export default function BlockRawContainer(props: any) {
   const { match: { params: { hash } } } = props;

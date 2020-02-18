@@ -1,8 +1,8 @@
-import ERPC from "@etclabscore/ethereum-json-rpc";
-import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
-import React, { useState, Dispatch } from "react";
+import ERPC from '@etclabscore/ethereum-json-rpc';
+import JadeServiceRunner from '@etclabscore/jade-service-runner-client';
+import React, { useState, Dispatch } from 'react';
 
-const serviceName = "multi-geth";
+const serviceName = 'multi-geth';
 
 function useMultiGeth(
   serviceRunner: JadeServiceRunner | undefined,
@@ -13,7 +13,7 @@ function useMultiGeth(
 ): [ERPC | undefined, Dispatch<string>] {
   const [erpc, setErpc] = React.useState<undefined | ERPC>();
   // queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL
-  const [urlOverride, setUrlOverride] = useState("http://localhost:5005/api/eth/request");
+  const [urlOverride, setUrlOverride] = useState('http://localhost:5005/api/eth/request');
   React.useEffect(() => {
     const runAsync = async () => {
       console.log(process.env);
@@ -36,13 +36,13 @@ function useMultiGeth(
       }
       let rpc;
       try {
-        const protocol = parsedUrl.protocol.split(":")[0] as any;
-        const fallbackPort = protocol === "http" ? 80 : 443;
+        const protocol = parsedUrl.protocol.split(':')[0] as any;
+        const fallbackPort = protocol === 'http' ? 80 : 443;
         const port = parseInt(parsedUrl.port, 10);
         rpc = new ERPC({
           transport: {
             host: parsedUrl.hostname,
-            port: port ? port : fallbackPort,
+            port: port || fallbackPort,
             type: protocol,
             path: parsedUrl.pathname,
           },
@@ -60,7 +60,6 @@ function useMultiGeth(
         erpc.rpc.requestManager.close();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
   return [erpc, setUrlOverride];
 }

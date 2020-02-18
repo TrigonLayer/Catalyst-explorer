@@ -1,18 +1,18 @@
 
-import { CircularProgress, useTheme, Theme } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import * as React from "react";
-import getBlocks, { useBlockNumber } from "../helpers";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import MinerStats from "../components/MinerStats";
-import MinerStatsTable from "../components/MinerStatsTable";
-import StatCharts from "../components/StatCharts";
-import getTheme from "../themes/victoryTheme";
-import BlockPagination from "../components/BlockPagination";
-import { History } from "history";
-import _ from "lodash";
+import { CircularProgress, useTheme, Theme } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import { History } from 'history';
+import _ from 'lodash';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import getBlocks, { useBlockNumber } from '../helpers';
+import MinerStats from '../components/MinerStats';
+import MinerStatsTable from '../components/MinerStatsTable';
+import StatCharts from '../components/StatCharts';
+import getTheme from '../themes/victoryTheme';
+import BlockPagination from '../components/BlockPagination';
 
-const useState = React.useState;
+const { useState } = React;
 
 const config = {
   blockTime: 15, // seconds
@@ -36,7 +36,8 @@ export default (props: IProps) => {
   const [blocks, setBlocks] = useState();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
-  const { block } = props.match.params;
+  const { match, history } = props;
+  const { block } = match.params;
   const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
   const from = Math.max(blockNum - 99, 0);
   const to = blockNum;
@@ -49,9 +50,9 @@ export default (props: IProps) => {
       props.history.push(`/stats/miners/${blockNumber}`);
     }
     if (blockNum < 0) {
-      props.history.push(`/stats/miners/0`);
+      props.history.push('/stats/miners/0');
     }
-  }, [blockNumber, blockNum, props.history]);
+  }, [blockNumber, blockNum, history]);
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -62,7 +63,6 @@ export default (props: IProps) => {
     ).then((bl) => {
       setBlocks(_.compact(bl));
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
   if (!blocks || blockNumber === undefined || blockNum > blockNumber) {
@@ -84,7 +84,7 @@ export default (props: IProps) => {
           const newQuery = Math.max(blockNum - 100, 0);
           props.history.push(`/stats/miners/${newQuery}`);
         }}
-      ></BlockPagination>
+      />
       <StatCharts blocks={blocks} victoryTheme={victoryTheme} />
       <MinerStats blocks={blocks} config={config} />
       <MinerStatsTable blocks={blocks} />

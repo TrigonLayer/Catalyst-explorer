@@ -1,14 +1,16 @@
-import { CircularProgress } from "@material-ui/core";
-import * as React from "react";
-import AddressView from "../components/AddressView";
-import _ from "lodash";
-import getBlocks, { useBlockNumber } from "../helpers";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import { hexToNumber } from "@etclabscore/eserialize";
-import AddressTransactions from "../components/AddressTransactions";
-import { History } from "history";
-const unit = require("ethjs-unit"); //tslint:disable-line
+/* eslint-disable react/prop-types */
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import _ from 'lodash';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import { hexToNumber } from '@etclabscore/eserialize';
+import { History } from 'history';
+import AddressView from '../components/AddressView';
+import getBlocks, { useBlockNumber } from '../helpers';
+import useMultiGethStore from '../stores/useMultiGethStore';
+import AddressTransactions from '../components/AddressTransactions';
+
+const unit = require('ethjs-unit'); // tslint:disable-line
 
 interface IUrlParams {
   number: string | undefined;
@@ -62,19 +64,16 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   React.useEffect(() => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then((blcks) => {
-      const txes = _.flatMap(blcks, "transactions");
+      const txes = _.flatMap(blcks, 'transactions');
       const filteredTxes = _.filter(txes, (tx: any) => {
         if (!tx) {
           return false;
         }
         return tx.to === address || tx.from === address;
       });
-      const sortedTxes = _.sortBy(filteredTxes, (tx: any) => {
-        return hexToNumber(tx.blockNumber);
-      }).reverse();
+      const sortedTxes = _.sortBy(filteredTxes, (tx: any) => hexToNumber(tx.blockNumber)).reverse();
       setTransactions(sortedTxes);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
   // if (transactionCount === undefined || balance === undefined || code === undefined) {
@@ -85,7 +84,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       <AddressView
         address={address}
         txCount={transactionCount ? hexToNumber(transactionCount) : 0}
-        balance={unit.fromWei(balance || 0, "ether")}
+        balance={unit.fromWei(balance || 0, 'ether')}
         code={code}
       />
       <AddressTransactions

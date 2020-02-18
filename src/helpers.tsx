@@ -1,16 +1,16 @@
-import ERPC from "@etclabscore/ethereum-json-rpc";
-import * as React from "react";
-import useInterval from "use-interval";
-import Web3 from "web3";
-import { hexToNumber } from "@etclabscore/eserialize";
+import ERPC from '@etclabscore/ethereum-json-rpc';
+import * as React from 'react';
+import useInterval from 'use-interval';
+import Web3 from 'web3';
+import { hexToNumber } from '@etclabscore/eserialize';
 
-const web3 = new Web3("http://localhost:5005/api/eth/request");
+const web3 = new Web3('http://localhost:5005/api/eth/request');
 
 export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> => {
   console.log(from, to);
   const promises: any[] = [];
 
-  for (let i = from; i <= to; i++) {
+  for (let i = from; i <= to; i += 1) {
     promises.push(web3.eth.getBlock(i, true));
     // promises.push(erpc.eth_getBlockByNumber(`0x${i.toString(16)}`, true));
   }

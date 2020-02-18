@@ -1,2 +1,3 @@
-import AddressView from "./AddressView";
+import AddressView from './AddressView';
+
 export default AddressView;

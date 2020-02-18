@@ -1,10 +1,10 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
 
 export const lightTheme = responsiveFontSizes(createMuiTheme({
   props: {
     MuiAppBar: {
-      position: "sticky",
+      position: 'sticky',
     },
     MuiCard: {
       elevation: 0,
@@ -13,18 +13,18 @@ export const lightTheme = responsiveFontSizes(createMuiTheme({
   overrides: {
     MuiAppBar: {
       root: {
-        background: "#fff !important",
+        background: '#fff !important',
       },
     },
     MuiPaper: {
       root: {
-        overflow: "visible !important",
+        overflow: 'visible !important',
       },
     },
   },
   palette: {
     background: {
-      default: "#fff",
+      default: '#fff',
     },
   },
 }));
@@ -32,14 +32,14 @@ export const lightTheme = responsiveFontSizes(createMuiTheme({
 export const darkTheme = responsiveFontSizes(createMuiTheme({
   props: {
     MuiAppBar: {
-      position: "sticky",
+      position: 'sticky',
     },
     MuiCard: {
       elevation: 0,
     },
   },
   palette: {
-    type: "dark",
+    type: 'dark',
     background: {
       default: grey[900],
       paper: grey[800],
@@ -48,12 +48,12 @@ export const darkTheme = responsiveFontSizes(createMuiTheme({
   overrides: {
     MuiPaper: {
       root: {
-        overflow: "visible !important",
+        overflow: 'visible !important',
       },
     },
     MuiTable: {
       root: {
-        background: "transparent !important",
+        background: 'transparent !important',
       },
     },
     MuiTypography: {
