@@ -15,7 +15,7 @@ interface IProps {
 export default function BlockCardListContainer(props: IProps) {
   const { from, to, style } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [blocks, setBlocks] = React.useState();
+  const [blocks, setBlocks]: [any, any] = React.useState();
   React.useEffect(() => {
     let isSubscribed = true;
     if (!erpc) { return; }

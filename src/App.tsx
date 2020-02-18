@@ -49,10 +49,10 @@ const history = createPreserveQueryHistory(createBrowserHistory, ['network', 'rp
 function App() {
   const { t } = useTranslation();
   const darkMode = useDarkMode();
-  const [search, setSearch] = useState();
+  const [search, setSearch]: [any, any] = useState();
   const theme = darkMode.value ? darkTheme : lightTheme;
 
-  const [selectedNetwork, setSelectedNetworkState] = useState();
+  const [selectedNetwork, setSelectedNetworkState]:[any, any] = useState();
   const [serviceRunner,
     serviceRunnerUrl,
     setServiceRunnerUrl,
@@ -100,7 +100,7 @@ function App() {
   }, [networks, query.network]);
 
   useEffect(() => {
-    if (selectedNetwork && selectedNetwork.name !== query.network) {
+    if (selectedNetwork && selectedNetwork?.name !== query.network) {
       setQuery({ network: selectedNetwork.name });
       history.push({
         pathname: history.location.pathname,

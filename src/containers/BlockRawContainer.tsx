@@ -7,7 +7,7 @@ import BlockRaw from '../components/BlockRaw';
 export default function BlockRawContainer(props: any) {
   const { match: { params: { hash } } } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [block, setBlock] = React.useState();
+  const [block, setBlock]: [any, any] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_getBlockByHash(hash, true).then(setBlock);

@@ -29,10 +29,10 @@ interface IProps {
 const Address: React.FC<IProps> = ({ match, history }) => {
   const { address, block } = match.params;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [blockNumber] = useBlockNumber(erpc);
-  const [transactionCount, setTransactionCount] = React.useState();
-  const [balance, setBalance] = React.useState();
-  const [code, setCode] = React.useState();
+  const [blockNumber]: any = useBlockNumber(erpc);
+  const [transactionCount, setTransactionCount]: [any, any] = React.useState();
+  const [balance, setBalance]: [any, any] = React.useState();
+  const [code, setCode]: [any, any] = React.useState();
   const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
   const [transactions, setTransactions] = React.useState();
 
@@ -71,7 +71,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
         }
         return tx.to === address || tx.from === address;
       });
-      const sortedTxes = _.sortBy(filteredTxes, (tx: any) => hexToNumber(tx.blockNumber)).reverse();
+      const sortedTxes: any = _.sortBy(filteredTxes, (tx: any) => hexToNumber(tx.blockNumber)).reverse();
       setTransactions(sortedTxes);
     });
   }, [from, to]);

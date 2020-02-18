@@ -32,8 +32,8 @@ interface IProps {
 
 export default (props: IProps) => {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [blockNumber] = useBlockNumber(erpc);
-  const [blocks, setBlocks] = useState();
+  const [blockNumber]: any = useBlockNumber(erpc);
+  const [blocks, setBlocks]: [any, any] = useState();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
   const { match, history } = props;

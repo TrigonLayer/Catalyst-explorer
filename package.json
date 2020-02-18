@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "service-runner": "jade-service-runner",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint --ignore-path .gitignore .",
     "version": "cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'"
   },
   "dependencies": {

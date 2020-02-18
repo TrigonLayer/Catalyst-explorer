@@ -7,7 +7,7 @@ import BlockView from '../components/BlockView';
 export default function Block(props: any) {
   const { match: { params: { hash } } } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [block, setBlock] = React.useState();
+  const [block, setBlock]: [any, any] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_getBlockByHash(hash, true).then(setBlock);

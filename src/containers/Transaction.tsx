@@ -1,14 +1,15 @@
-import { CircularProgress } from "@material-ui/core";
-import * as React from "react";
-import TxView from "../components/TxView";
-import useMultiGethStore from "../stores/useMultiGethStore";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
+import { CircularProgress } from '@material-ui/core';
+import * as React from 'react';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
+import TxView from '../components/TxView';
+import useMultiGethStore from '../stores/useMultiGethStore';
 
 export default function TransactionContainer(props: any) {
-  const hash = props.match.params.hash;
+  const { match } = props;
+  const { hash } = match.params;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [transaction, setTransaction] = React.useState();
-  const [receipt, setReceipt] = React.useState();
+  const [transaction, setTransaction]: [any, any] = React.useState();
+  const [receipt, setReceipt] : [any, any] = React.useState();
 
   React.useEffect(() => {
     if (!erpc) { return; }

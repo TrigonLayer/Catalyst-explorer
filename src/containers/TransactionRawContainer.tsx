@@ -8,8 +8,8 @@ export default function TransactionRawContainer(props: any) {
   const { match } = props;
   const { hash } = match.params;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [transaction, setTransaction] = React.useState();
-  const [receipt, setReceipt] = React.useState();
+  const [transaction, setTransaction]: [any, any] = React.useState();
+  const [receipt, setReceipt]: [any, any] = React.useState();
 
   React.useEffect(() => {
     if (!erpc) { return; }

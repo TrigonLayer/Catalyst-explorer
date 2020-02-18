@@ -12,9 +12,9 @@ interface IUrlParams {
 
 export default function NodeView(props: any) {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [blockNumber] = useBlockNumber(erpc);
+  const [blockNumber]: any = useBlockNumber(erpc);
   const urlParams = useParams<IUrlParams>();
-  const blockNum = (urlParams && urlParams.number !== undefined) ? urlParams.number : blockNumber;
+  const blockNum: any = (urlParams && urlParams.number !== undefined) ? urlParams.number : blockNumber;
   const { history } = props;
 
   React.useEffect(() => {
