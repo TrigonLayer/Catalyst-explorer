@@ -22,7 +22,12 @@ export default function BlockListContainer(props: IProps) {
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }
-    getBlocks(from, to, erpc).then(setBlocks);
+    getBlocks(from, to, erpc).then((bl) => {
+      console.log("bl: ", bl);
+      const removeNull = bl.filter((bloc: any) => !!bloc);
+      console.log(removeNull);
+      setBlocks(removeNull);
+    });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 

@@ -14,6 +14,7 @@ import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
+import Web3 from "web3";
 
 const useState = React.useState;
 
@@ -39,6 +40,8 @@ export default (props: any) => {
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
 
+  const web3 = new Web3("http://localhost:5005/api/eth/request");
+
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
@@ -51,7 +54,8 @@ export default (props: any) => {
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
+    // erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
+    web3.eth.getBlock(blockNumber, true).then(setBlock);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
@@ -62,16 +66,19 @@ export default (props: any) => {
       blockNumber,
       erpc,
     ).then((bl) => {
-      setBlocks(bl);
+      console.log("bl: ", bl);
+      const removeNull = bl.filter((bloc: any) => !!bloc);
+      console.log(removeNull);
+      setBlocks(removeNull);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
-  useInterval(() => {
-    if (!erpc) { return; }
+  // useInterval(() => {
+  //   if (!erpc) { return; }
 
-    erpc.eth_syncing().then(setSyncing);
-  }, 10000, true);
+  //   erpc.eth_syncing().then(setSyncing);
+  // }, 10000, true);
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -151,7 +158,7 @@ export default (props: any) => {
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
-        to={blockNumber - 3}
+        to={blockNumber}
         disablePrev={true}
         disableNext={blockNumber === 0}
         onNext={() => {

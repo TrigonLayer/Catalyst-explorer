@@ -32,7 +32,7 @@ import { StringParam, QueryParamProvider, useQueryParams } from "use-query-param
 import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 import BlockRawContainer from "./containers/BlockRawContainer";
 import TransactionRawContainer from "./containers/TransactionRawContainer";
-import expeditionLogo from "./expedition.png";
+import catalystLogo from "./catalyst-icon.jpeg";
 import MinerStatsPage from "./containers/MinerStatsPage";
 
 const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
@@ -185,12 +185,12 @@ function App(props: any) {
                         alt="expedition-logo"
                         height="30"
                         style={{ marginRight: "10px" }}
-                        src={expeditionLogo}
+                        src={catalystLogo}
                       />
                     </Grid>
                     <Grid>
                       <Typography color="textSecondary" variant="h6">
-                        {t("Expedition")}
+                        {t("Testnet")}
                       </Typography>
                     </Grid>
                   </Grid>

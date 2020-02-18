@@ -12,9 +12,12 @@ function useMultiGeth(
   queryUrlOverride?: string,
 ): [ERPC | undefined, Dispatch<string>] {
   const [erpc, setErpc] = React.useState<undefined | ERPC>();
-  const [urlOverride, setUrlOverride] = useState(queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL);
+  // queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL
+  const [urlOverride, setUrlOverride] = useState("http://localhost:5005/api/eth/request");
   React.useEffect(() => {
     const runAsync = async () => {
+      console.log(process.env);
+      console.log(urlOverride);
       if (!urlOverride) {
         if (!serviceRunner) {
           return;
