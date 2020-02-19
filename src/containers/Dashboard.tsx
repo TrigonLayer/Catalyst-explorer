@@ -58,7 +58,7 @@ export default (props: any) => {
     if (!erpc || blockNumber === undefined) { return; }
     // erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
     web3.eth.getBlock(blockNumber, true).then(setBlock);
-  }, [blockNumber, erpc, web3.eth]);
+  }, [blockNumber, erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === null) { return; }
@@ -178,7 +178,7 @@ export default (props: any) => {
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
-        to={blockNumber}
+        to={blockNumber - 3}
         disablePrev
         disableNext={blockNumber === 0}
         onNext={() => {

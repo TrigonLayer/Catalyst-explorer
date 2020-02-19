@@ -7,7 +7,7 @@ import { hexToNumber } from '@etclabscore/eserialize';
 const web3 = new Web3('http://localhost:5005/api/eth/request');
 
 export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> => {
-  console.log(from, to);
+  console.log(from, Number(to));
   const promises: any[] = [];
 
   for (let i = from; i <= to; i += 1) {
@@ -24,7 +24,8 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
       return;
     }
     web3.eth.getBlockNumber().then((bn) => {
-      setBlockNumber(hexToNumber(bn.toString()));
+      console.log(bn);
+      setBlockNumber(bn);
     });
     // erpc.eth_blockNumber().then((bn: string) => {
     //   setBlockNumber(hexToNumber(bn));
@@ -33,7 +34,7 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
   React.useEffect(() => {
     if (erpc) {
       web3.eth.getBlockNumber().then((bn) => {
-        setBlockNumber(hexToNumber(bn.toString()));
+        setBlockNumber(bn);
       });
       // erpc.eth_blockNumber().then((bn: string) => {
       //   setBlockNumber(hexToNumber(bn));

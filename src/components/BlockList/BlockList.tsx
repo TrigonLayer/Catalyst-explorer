@@ -88,7 +88,7 @@ function BlockList({ blocks }: any) {
                       </RouterLink>
                     )}
                   >
-                    {parseInt(b.number, 16)}
+                    {parseInt(b.number, 10)}
                   </Link>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
