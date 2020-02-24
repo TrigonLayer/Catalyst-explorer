@@ -11,8 +11,8 @@ export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> =>
   const promises: any[] = [];
 
   for (let i = from; i <= to; i += 1) {
-    promises.push(web3.eth.getBlock(i, true));
-    // promises.push(erpc.eth_getBlockByNumber(`0x${i.toString(16)}`, true));
+    // promises.push(web3.eth.getBlock(i, true));
+    promises.push(erpc.eth_getBlockByNumber(`0x${i.toString(16)}`, true));
   }
   return Promise.all(promises);
 };
@@ -23,22 +23,22 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
     if (!erpc) {
       return;
     }
-    web3.eth.getBlockNumber().then((bn) => {
-      console.log(bn);
+    // web3.eth.getBlockNumber().then((bn) => {
+    //   console.log(bn);
+    //   setBlockNumber(bn);
+    // });
+    erpc.eth_blockNumber().then((bn: string) => {
       setBlockNumber(bn);
     });
-    // erpc.eth_blockNumber().then((bn: string) => {
-    //   setBlockNumber(hexToNumber(bn));
-    // });
   }, 7000, true);
   React.useEffect(() => {
     if (erpc) {
-      web3.eth.getBlockNumber().then((bn) => {
+      // web3.eth.getBlockNumber().then((bn) => {
+      //   setBlockNumber(bn);
+      // });
+      erpc.eth_blockNumber().then((bn: string) => {
         setBlockNumber(bn);
       });
-      // erpc.eth_blockNumber().then((bn: string) => {
-      //   setBlockNumber(hexToNumber(bn));
-      // });
     }
   }, [erpc]);
   return [blockNumber];

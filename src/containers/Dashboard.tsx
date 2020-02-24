@@ -44,20 +44,20 @@ export default (props: any) => {
 
   const web3 = new Web3('http://localhost:5005/api/eth/request');
 
-  React.useEffect(() => {
-    if (!erpc) { return; }
-    erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
-  }, [erpc]);
+  // React.useEffect(() => {
+  //   if (!erpc) { return; }
+  //   erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
+  // }, [erpc]);
 
-  React.useEffect(() => {
-    if (!erpc) { return; }
-    erpc.eth_chainId().then(setChainId);
-  }, [erpc]);
+  // React.useEffect(() => {
+  //   if (!erpc) { return; }
+  //   erpc.eth_chainId().then(setChainId);
+  // }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    // erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
-    web3.eth.getBlock(blockNumber, true).then(setBlock);
+    erpc.eth_getBlockByNumber(blockNumber, true).then(setBlock);
+    // web3.eth.getBlock(blockNumber, true).then(setBlock);
   }, [blockNumber, erpc]);
 
   React.useEffect(() => {
@@ -80,15 +80,15 @@ export default (props: any) => {
   //   erpc.eth_syncing().then(setSyncing);
   // }, 10000, true);
 
-  React.useEffect(() => {
-    if (!erpc) { return; }
-    erpc.net_peerCount().then(setPeerCount);
-  }, [erpc]);
+  // React.useEffect(() => {
+  //   if (!erpc) { return; }
+  //   erpc.net_peerCount().then(setPeerCount);
+  // }, [erpc]);
 
-  React.useEffect(() => {
-    if (!erpc) { return; }
-    erpc.eth_gasPrice().then(setGasPrice);
-  }, [erpc]);
+  // React.useEffect(() => {
+  //   if (!erpc) { return; }
+  //   erpc.eth_gasPrice().then(setGasPrice);
+  // }, [erpc]);
 
   if (!blocks) {
     return <CircularProgress />;
@@ -103,7 +103,7 @@ export default (props: any) => {
               <Typography variant="h4">{blockNumber}</Typography>
             </ChartCard>
           </Grid>
-          <Grid key="chainId" item>
+          {/* <Grid key="chainId" item>
             <ChartCard title={t('Chain ID')}>
               <Typography variant="h4">{hexToNumber(chainId)}</Typography>
             </ChartCard>
@@ -159,7 +159,7 @@ export default (props: any) => {
             <ChartCard title={t('Peers')}>
               <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
             </ChartCard>
-          </Grid>
+                  </Grid> */}
         </Grid>
       </Grid>
       <StatCharts victoryTheme={victoryTheme} blocks={blocks} />
@@ -178,7 +178,7 @@ export default (props: any) => {
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
-        to={blockNumber - 3}
+        to={blockNumber}
         disablePrev
         disableNext={blockNumber === 0}
         onNext={() => {

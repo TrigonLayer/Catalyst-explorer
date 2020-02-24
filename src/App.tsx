@@ -42,7 +42,7 @@ import BlockRawContainer from './containers/BlockRawContainer';
 import TransactionRawContainer from './containers/TransactionRawContainer';
 import MinerStatsPage from './containers/MinerStatsPage';
 
-const catalystLogo = require('./catalyst-icon.jpeg');
+const catalystLogo = require('./logo.svg');
 
 const history = createPreserveQueryHistory(createBrowserHistory, ['network', 'rpcUrl'])();
 
