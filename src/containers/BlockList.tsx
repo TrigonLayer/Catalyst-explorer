@@ -26,9 +26,7 @@ export default function BlockListContainer(props: IProps) {
   React.useEffect(() => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then((bl) => {
-      console.log('bl: ', bl);
       const removeNull = bl.filter((bloc: any) => !!bloc);
-      console.log(removeNull);
       setBlocks(removeNull);
     });
   }, [from, to, erpc]);

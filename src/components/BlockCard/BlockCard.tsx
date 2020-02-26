@@ -32,7 +32,7 @@ export default function BlockCard(props: IProps) {
         <CardHeader title={hexToNumber(block.number!)} />
         <CardContent>
           <Typography variant="caption" style={{ fontSize: '11px' }}>{block.hash}</Typography>
-          <Typography gutterBottom>{t('Timestamp Date', { date: hexToDate(block.timestamp!) })}</Typography>
+          <Typography gutterBottom>{t('Timestamp Date', { date: block.timestamp })}</Typography>
           <Typography gutterBottom>{hexToString(block.extraData!)}</Typography>
           <Chip label={`${block.transactions!.length} Transactions`} />
         </CardContent>

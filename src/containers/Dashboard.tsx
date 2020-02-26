@@ -56,7 +56,12 @@ export default (props: any) => {
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    erpc.eth_getBlockByNumber(blockNumber, true).then(setBlock);
+    console.log(blockNumber);
+    erpc.eth_getBlockByNumber(blockNumber, true).then((result: any) => {
+      console.log(result);
+      setBlock(result);
+    })
+      .catch((e: any) => console.log(e));
     // web3.eth.getBlock(blockNumber, true).then(setBlock);
   }, [blockNumber, erpc]);
 
@@ -67,18 +72,16 @@ export default (props: any) => {
       blockNumber,
       erpc,
     ).then((bl) => {
-      console.log('bl: ', bl);
       const removeNull = bl.filter((bloc: any) => !!bloc);
-      console.log(removeNull);
       setBlocks(removeNull);
     });
   }, [blockNumber, erpc]);
 
-  // useInterval(() => {
-  //   if (!erpc) { return; }
+  useInterval(() => {
+    if (!erpc) { return; }
 
-  //   erpc.eth_syncing().then(setSyncing);
-  // }, 10000, true);
+    erpc.eth_syncing().then(setSyncing);
+  }, 10000, true);
 
   // React.useEffect(() => {
   //   if (!erpc) { return; }
@@ -103,7 +106,7 @@ export default (props: any) => {
               <Typography variant="h4">{blockNumber}</Typography>
             </ChartCard>
           </Grid>
-          {/* <Grid key="chainId" item>
+          <Grid key="chainId" item>
             <ChartCard title={t('Chain ID')}>
               <Typography variant="h4">{hexToNumber(chainId)}</Typography>
             </ChartCard>
@@ -134,7 +137,7 @@ export default (props: any) => {
               </Typography>
             </ChartCard>
           </Grid>
-          <Grid key="hRate" item>
+          {/* <Grid key="hRate" item>
             <ChartCard title={t('Network Hash Rate')}>
               {block
                 && (
@@ -149,7 +152,7 @@ export default (props: any) => {
                 </HashRate>
                 )}
             </ChartCard>
-          </Grid>
+          </Grid> */}
           <Grid key="pending-tx" item>
             <ChartCard title={t('Pending Transactions')}>
               <Typography variant="h4">{pendingTransctionsLength}</Typography>
@@ -159,7 +162,7 @@ export default (props: any) => {
             <ChartCard title={t('Peers')}>
               <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
             </ChartCard>
-                  </Grid> */}
+          </Grid>
         </Grid>
       </Grid>
       <StatCharts victoryTheme={victoryTheme} blocks={blocks} />

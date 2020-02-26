@@ -61,7 +61,6 @@ function BlockList({ blocks }: any) {
 
             // Calculate difference of block timestamp from that of parent.
             const timeDifferenceFromParent = (index === sortedBlocks.length - 1) ? 0 : (b.timestamp - sortedBlocks[index + 1].timestamp);
-            console.log(b.timestamp);
 
             return (
               <TableRow key={b.number} style={authorHashStyle}>
