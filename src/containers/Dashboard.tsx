@@ -83,10 +83,10 @@ export default (props: any) => {
     erpc.eth_syncing().then(setSyncing);
   }, 10000, true);
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.net_peerCount().then(setPeerCount);
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.net_peerCount().then(setPeerCount);
+  }, [erpc]);
 
   // React.useEffect(() => {
   //   if (!erpc) { return; }
