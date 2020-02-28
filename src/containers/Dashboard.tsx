@@ -38,15 +38,18 @@ export default (props: any) => {
   const [gasPrice, setGasPrice]: [any, any] = useState();
   const [syncing, setSyncing]: [any, any] = useState();
   const [peerCount, setPeerCount]: [any, any] = useState();
+  const [pendingTransctions, setPendingTransactions] = useState();
 
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
 
-  const web3 = new Web3('http://localhost:5005/api/eth/request');
 
   // React.useEffect(() => {
   //   if (!erpc) { return; }
-  //   erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
+  //   erpc.eth_pendingTransactions().then((p) => {
+  //     setPendingTransactions(p);
+  //     setPendingTransactionsLength(p.length);
+  //   });
   // }, [erpc]);
 
   // React.useEffect(() => {
