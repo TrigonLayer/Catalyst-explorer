@@ -38,24 +38,25 @@ export default (props: any) => {
   const [gasPrice, setGasPrice]: [any, any] = useState();
   const [syncing, setSyncing]: [any, any] = useState();
   const [peerCount, setPeerCount]: [any, any] = useState();
-  const [pendingTransctions, setPendingTransactions] = useState();
+  const [pendingTransctions, setPendingTransactions]: [any, any] = useState();
 
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
 
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_pendingTransactions().then((p) => {
-  //     setPendingTransactions(p);
-  //     setPendingTransactionsLength(p.length);
-  //   });
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_pendingTransactions().then((p) => {
+      console.log('pending: ', p);
+      setPendingTransactions(p);
+      setPendingTransactionsLength(p.length);
+    });
+  }, [erpc]);
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_chainId().then(setChainId);
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_chainId().then(setChainId);
+  }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
