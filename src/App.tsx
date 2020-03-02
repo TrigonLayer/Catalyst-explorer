@@ -61,7 +61,36 @@ function App() {
         any,
          IAvailableServices[]] = useServiceRunnerStore();
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
-  const [networks, setNetworks] = useState<any[]>([]);
+  const [networks, setNetworks] = useState<any[]>([{
+    name: 'local',
+    url: 'http://localhost:5005/api/eth/request',
+    summary: 'your local node',
+  },
+  {
+    name: 'Node 1',
+    url: 'http://192.168.1.45:5005/api/eth/request',
+    summary: 'Testnet node 1',
+  },
+  {
+    name: 'Node 2',
+    url: 'http://192.168.1.46:5005/api/eth/request',
+    summary: 'Testnet node 2',
+  },
+  {
+    name: 'Node 3',
+    url: 'http://192.168.1.47:5005/api/eth/request',
+    summary: 'Testnet node 3',
+  },
+  {
+    name: 'Alex',
+    url: 'http://192.168.1.232:5005/api/eth/request',
+    summary: 'Alex\'s node',
+  },
+  {
+    name: 'Stephen',
+    url: 'http://192.168.1.233:5005/api/eth/request',
+    summary: 'Stephen\'s node',
+  }]);
 
   const [query, setQuery] = useQueryParams({
     network: StringParam,

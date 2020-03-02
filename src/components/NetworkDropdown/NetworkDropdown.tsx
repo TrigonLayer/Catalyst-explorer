@@ -33,6 +33,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
     // if (setSelectedNetwork) {
     //   setSelectedNetwork(network);
     // }
+    setSelectedNetwork(network);
     onChange('ethereum-rpc', network.url);
   };
 
