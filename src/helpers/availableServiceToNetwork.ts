@@ -13,6 +13,7 @@ const availableServiceToNetwork = (
   availableServices: IAvailableServices[],
   serviceRunnerUrl: string,
 ): TNetwork[] => {
+  console.log('available: ', availableServices);
   const availNetworks = availableServices.map((availableService: IAvailableServices) => {
     if (!availableService) {
       return [];

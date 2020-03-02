@@ -239,6 +239,7 @@ function App() {
                   networks={networks}
                   setSelectedNetwork={setSelectedNetwork}
                   selectedNetwork={selectedNetwork}
+                  onChange={handleConfigurationChange}
                 />
                 <LanguageMenu />
                 <Tooltip title={t('JSON-RPC API Documentation')}>
