@@ -89,10 +89,11 @@ export default (props: any) => {
     erpc.net_peerCount().then(setPeerCount);
   }, [erpc]);
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_gasPrice().then(setGasPrice);
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    // erpc.eth_gasPrice().then(setGasPrice);
+    setGasPrice('0x12A05F200');
+  }, [erpc]);
 
   if (!blocks) {
     return <CircularProgress />;

@@ -9,7 +9,11 @@ interface IProps {
 const ChartCard: React.FC<IProps> = ({ title, children }) => (
   <Card style={{ background: 'transparent' }} elevation={0}>
     <CardContent>
-      <Typography variant="h6">{title}</Typography>
+      {/* <Typography variant="h6">{title}</Typography> */}
+      <h2>
+        {' '}
+        {title}
+      </h2>
       {children}
     </CardContent>
   </Card>
