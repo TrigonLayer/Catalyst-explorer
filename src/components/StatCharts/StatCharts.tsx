@@ -10,8 +10,8 @@ import { hashesToGH } from '../formatters';
 const config = {
   blockTime: 15, // seconds
   blockHistoryLength: 100,
-  chartHeight: 200,
-  chartWidth: 400,
+  chartHeight: 175,
+  chartWidth: 350,
 };
 
 const blockMapGasUsed = (block: any) => ({
@@ -42,14 +42,7 @@ interface IProps {
 const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme }) => {
   const { t } = useTranslation();
   return (
-    <Grid item container>
-      {/* <Grid key="hashChart" item xs={12} md={6} lg={3}>
-        <ChartCard title={t('Hash Rate')}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-            <VictoryLine data={blocks.map(blockMapHashRate)} />
-          </VictoryChart>
-        </ChartCard>
-      </Grid> */}
+    <Grid item container spacing={3}>
       <Grid key="txChart" item xs={12} md={6} lg={6}>
         <ChartCard title={t('Transaction count')}>
           <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
@@ -64,13 +57,6 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme }) => {
           </VictoryChart>
         </ChartCard>
       </Grid>
-      {/* <Grid key="uncles" item xs={12} md={6} lg={3}>
-        <ChartCard title={t('Uncles')}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-            <VictoryBar data={blocks.map(blockMapUncles)} />
-          </VictoryChart>
-        </ChartCard>
-      </Grid> */}
     </Grid>
   );
 };

@@ -18,11 +18,11 @@ export default function PendingTxContainer() {
     setPending(mockTxs);
   }, []);
 
-  // useInterval(() => {
-  //   if (!erpc) { return; }
+  useInterval(() => {
+    if (!erpc) { return; }
 
-  //   erpc.eth_pendingTransactions().then(setPending);
-  // }, 5000, true);
+    erpc.eth_pendingTransactions().then(setPending);
+  }, 5000, true);
 
   if (pending.length === 0) return null;
 
