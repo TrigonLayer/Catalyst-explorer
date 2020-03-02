@@ -16,6 +16,7 @@ import getBlocks, { useBlockNumber } from '../helpers';
 import getTheme from '../themes/victoryTheme';
 import ChartCard from '../components/ChartCard';
 import BlockListContainer from './BlockList';
+import PendingContainer from './PendingTx';
 import StatCharts from '../components/StatCharts';
 
 const { useState } = React;
@@ -182,6 +183,8 @@ export default (props: any) => {
         </Button>
       </Grid>
       <br />
+
+      <PendingContainer />
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
