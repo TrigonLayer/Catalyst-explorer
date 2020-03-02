@@ -48,7 +48,6 @@ export default (props: any) => {
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_pendingTransactions().then((p) => {
-      console.log('pending: ', p);
       setPendingTransactions(p);
       setPendingTransactionsLength(p.length);
     });
@@ -61,13 +60,10 @@ export default (props: any) => {
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    console.log(blockNumber);
     erpc.eth_getBlockByNumber(blockNumber, true).then((result: any) => {
-      console.log(result);
       setBlock(result);
     })
       .catch((e: any) => console.log(e));
-    // web3.eth.getBlock(blockNumber, true).then(setBlock);
   }, [blockNumber, erpc]);
 
   React.useEffect(() => {
@@ -142,22 +138,6 @@ export default (props: any) => {
               </Typography>
             </ChartCard>
           </Grid>
-          {/* <Grid key="hRate" item>
-            <ChartCard title={t('Network Hash Rate')}>
-              {block
-                && (
-                <HashRate block={block} blockTime={config.blockTime}>
-                  {(hashRate: any) => (
-                    <Typography variant="h4">
-                      {hashRate}
-                      {' '}
-                      GH/s
-                    </Typography>
-                  )}
-                </HashRate>
-                )}
-            </ChartCard>
-          </Grid> */}
           <Grid key="pending-tx" item>
             <ChartCard title={t('Pending Transactions')}>
               <Typography variant="h4">{pendingTransctionsLength}</Typography>
