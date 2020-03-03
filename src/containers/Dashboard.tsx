@@ -16,6 +16,7 @@ import getBlocks, { useBlockNumber } from '../helpers';
 import getTheme from '../themes/victoryTheme';
 import ChartCard from '../components/ChartCard';
 import BlockListContainer from './BlockList';
+import PendingContainer from './PendingTx';
 import StatCharts from '../components/StatCharts';
 
 const { useState } = React;
@@ -38,31 +39,31 @@ export default (props: any) => {
   const [gasPrice, setGasPrice]: [any, any] = useState();
   const [syncing, setSyncing]: [any, any] = useState();
   const [peerCount, setPeerCount]: [any, any] = useState();
+  const [pendingTransctions, setPendingTransactions]: [any, any] = useState();
 
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
 
-  const web3 = new Web3('http://localhost:5005/api/eth/request');
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_pendingTransactions().then((p) => {
+      setPendingTransactions(p);
+      setPendingTransactionsLength(p.length);
+    });
+  }, [erpc]);
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_chainId().then(setChainId);
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_chainId().then(setChainId);
+  }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    console.log(blockNumber);
     erpc.eth_getBlockByNumber(blockNumber, true).then((result: any) => {
-      console.log(result);
       setBlock(result);
     })
       .catch((e: any) => console.log(e));
-    // web3.eth.getBlock(blockNumber, true).then(setBlock);
   }, [blockNumber, erpc]);
 
   React.useEffect(() => {
@@ -79,19 +80,21 @@ export default (props: any) => {
 
   useInterval(() => {
     if (!erpc) { return; }
-
+    erpc.net_peerCount().then(setPeerCount);
     erpc.eth_syncing().then(setSyncing);
   }, 10000, true);
+
 
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.net_peerCount().then(setPeerCount);
   }, [erpc]);
 
-  // React.useEffect(() => {
-  //   if (!erpc) { return; }
-  //   erpc.eth_gasPrice().then(setGasPrice);
-  // }, [erpc]);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    // erpc.eth_gasPrice().then(setGasPrice);
+    setGasPrice('0x12A05F200');
+  }, [erpc]);
 
   if (!blocks) {
     return <CircularProgress />;
@@ -137,22 +140,6 @@ export default (props: any) => {
               </Typography>
             </ChartCard>
           </Grid>
-          {/* <Grid key="hRate" item>
-            <ChartCard title={t('Network Hash Rate')}>
-              {block
-                && (
-                <HashRate block={block} blockTime={config.blockTime}>
-                  {(hashRate: any) => (
-                    <Typography variant="h4">
-                      {hashRate}
-                      {' '}
-                      GH/s
-                    </Typography>
-                  )}
-                </HashRate>
-                )}
-            </ChartCard>
-          </Grid> */}
           <Grid key="pending-tx" item>
             <ChartCard title={t('Pending Transactions')}>
               <Typography variant="h4">{pendingTransctionsLength}</Typography>
@@ -178,6 +165,8 @@ export default (props: any) => {
         </Button>
       </Grid>
       <br />
+
+      <PendingContainer />
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}

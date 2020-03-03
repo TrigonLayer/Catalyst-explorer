@@ -36,13 +36,19 @@ export default function BlockListContainer(props: IProps) {
   }
   return (
     <div style={style}>
-      <Grid container justify="flex-end">
-        <IconButton onClick={onPrev} disabled={disablePrev}>
-          <ArrowBackIos />
-        </IconButton>
-        <IconButton onClick={onNext} disabled={disableNext}>
-          <ArrowForwardIos />
-        </IconButton>
+      <Grid container justify="flex-start">
+        <Grid item xs={6}>
+          <h2 style={{ padding: '0 16px' }}>Recent Blocks</h2>
+        </Grid>
+
+        <Grid container xs={6} justify="flex-end">
+          <IconButton onClick={onPrev} disabled={disablePrev}>
+            <ArrowBackIos />
+          </IconButton>
+          <IconButton onClick={onNext} disabled={disableNext}>
+            <ArrowForwardIos />
+          </IconButton>
+        </Grid>
       </Grid>
       <BlockList blocks={blocks} />
     </div>

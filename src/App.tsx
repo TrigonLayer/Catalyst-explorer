@@ -61,7 +61,36 @@ function App() {
         any,
          IAvailableServices[]] = useServiceRunnerStore();
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
-  const [networks, setNetworks] = useState<any[]>([]);
+  const [networks, setNetworks] = useState<any[]>([{
+    name: 'local',
+    url: 'http://localhost:5005/api/eth/request',
+    summary: 'your local node',
+  },
+  {
+    name: 'Node 1',
+    url: 'http://192.168.1.45:5005/api/eth/request',
+    summary: 'Testnet node 1',
+  },
+  {
+    name: 'Node 2',
+    url: 'http://192.168.1.46:5005/api/eth/request',
+    summary: 'Testnet node 2',
+  },
+  {
+    name: 'Node 3',
+    url: 'http://192.168.1.47:5005/api/eth/request',
+    summary: 'Testnet node 3',
+  },
+  {
+    name: 'Alex',
+    url: 'http://192.168.1.232:5005/api/eth/request',
+    summary: 'Alex\'s node',
+  },
+  {
+    name: 'Stephen',
+    url: 'http://192.168.1.233:5005/api/eth/request',
+    summary: 'Stephen\'s node',
+  }]);
 
   const [query, setQuery] = useQueryParams({
     network: StringParam,
@@ -147,7 +176,7 @@ function App() {
 
   const handleSearch = async (q: string) => {
     if (isAddress(q)) {
-      history.push(`/address/${q}`);
+      return history.push(`/address/${q}`);
     }
     if (isKeccakHash(q)) {
       let transaction;
@@ -159,7 +188,7 @@ function App() {
       }
 
       if (transaction) {
-        history.push(`/tx/${q}`);
+        return history.push(`/tx/${q}`);
       }
       let block;
       try {
@@ -168,15 +197,16 @@ function App() {
         // do nothing
       }
       if (block) {
-        history.push(`/block/${q}`);
+        return history.push(`/block/${q}`);
       }
     }
     if (isBlockNumber(q)) {
       const block = await erpc.eth_getBlockByNumber(`0x${parseInt(q, 10).toString(16)}`, false);
       if (block) {
-        history.push(`/block/${block.hash}`);
+        return history.push(`/block/${block.hash}`);
       }
     }
+    return false;
   };
 
   return (
@@ -239,6 +269,7 @@ function App() {
                   networks={networks}
                   setSelectedNetwork={setSelectedNetwork}
                   selectedNetwork={selectedNetwork}
+                  onChange={handleConfigurationChange}
                 />
                 <LanguageMenu />
                 <Tooltip title={t('JSON-RPC API Documentation')}>
