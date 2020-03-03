@@ -33,6 +33,11 @@ export default function PendingTxContainer() {
           <h2 style={{ padding: '0 16px' }}>Pending Transactions</h2>
         </Grid>
         <Grid container xs={6} justify="flex-end">
+          <h3 style={{ padding: '0 16px' }}>
+            Total Txs
+            {' '}
+            {pending.length}
+          </h3>
           <IconButton onClick={() => setTo(to - 5)} disabled={to <= 5}>
             <ArrowBackIos />
           </IconButton>

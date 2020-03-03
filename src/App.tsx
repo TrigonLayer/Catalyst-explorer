@@ -176,7 +176,7 @@ function App() {
 
   const handleSearch = async (q: string) => {
     if (isAddress(q)) {
-      history.push(`/address/${q}`);
+      return history.push(`/address/${q}`);
     }
     if (isKeccakHash(q)) {
       let transaction;
@@ -188,7 +188,7 @@ function App() {
       }
 
       if (transaction) {
-        history.push(`/tx/${q}`);
+        return history.push(`/tx/${q}`);
       }
       let block;
       try {
@@ -197,15 +197,16 @@ function App() {
         // do nothing
       }
       if (block) {
-        history.push(`/block/${q}`);
+        return history.push(`/block/${q}`);
       }
     }
     if (isBlockNumber(q)) {
       const block = await erpc.eth_getBlockByNumber(`0x${parseInt(q, 10).toString(16)}`, false);
       if (block) {
-        history.push(`/block/${block.hash}`);
+        return history.push(`/block/${block.hash}`);
       }
     }
+    return false;
   };
 
   return (
