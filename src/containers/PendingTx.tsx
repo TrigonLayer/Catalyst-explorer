@@ -14,9 +14,6 @@ export default function PendingTxContainer() {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [pending, setPending]: [any, any] = React.useState([]);
   const [to, setTo]: [any, any] = React.useState(5);
-  React.useEffect(() => {
-    setPending(mockTxs);
-  }, []);
 
   useInterval(() => {
     if (!erpc) { return; }
