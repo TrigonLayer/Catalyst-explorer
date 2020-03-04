@@ -70,6 +70,11 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
     name: 'Stephen',
     url: 'http://192.168.1.233:5005/api/eth/request',
     summary: 'Stephen\'s node',
+  },
+  {
+    name: 'Sudhir',
+    url: 'http://192.168.1.40:5005/api/eth/request',
+    summary: 'Sudhir\'s node',
   }];
 
   return (
