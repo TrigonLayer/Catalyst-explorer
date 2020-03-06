@@ -10,21 +10,22 @@ import getBlocks from '../helpers';
 import { mockTxs } from '../helpers/mockTxs';
 
 
-export default function PendingTxContainer() {
+export default function PendingTxContainer(props: any) {
+  const { pending } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [pending, setPending]: [any, any] = React.useState([]);
+  // const [pending, setPending]: [any, any] = React.useState([]);
   const [to, setTo]: [any, any] = React.useState(5);
 
-  useInterval(() => {
-    if (!erpc) { return; }
+  // useInterval(() => {
+  //   if (!erpc) { return; }
 
-    erpc.eth_pendingTransactions().then(setPending);
-  }, 5000, true);
+  //   erpc.eth_pendingTransactions().then(setPending);
+  // }, 5000, true);
 
   if (pending.length === 0) return null;
 
   return (
-    <div>
+    <div className="MuiCardContent-root">
       <Grid container justify="flex-start">
         <Grid item xs={6}>
           <h2 style={{ padding: '0 16px' }}>Pending Transactions</h2>

@@ -35,7 +35,7 @@ export default function BlockListContainer(props: IProps) {
     return <CircularProgress />;
   }
   return (
-    <div style={style}>
+    <div style={style} className="MuiCardContent-root">
       <Grid container justify="flex-start">
         <Grid item xs={6}>
           <h2 style={{ padding: '0 16px' }}>Recent Blocks</h2>

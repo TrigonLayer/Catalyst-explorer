@@ -1,7 +1,18 @@
+@font-face {
+  font-family: montserrat;
+  src: url(./themes/fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: montserrat bold;
+  src: url(./themes/fonts/Montserrat-Bold.ttf);
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
     max-width: 100%;
+    font-family: 'montserrat';
 }
 
 
@@ -17,4 +28,18 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #ddd;
   border-radius: 5px;
+}
+
+
+h2 {
+  font-family: 'montserrat bold';
+  text-transform: uppercase;
+}
+
+a { 
+  color: lightblue;
+}
+
+.MuiTypography-colorPrimary {
+    color: lightblue;
 }

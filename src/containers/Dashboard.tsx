@@ -39,7 +39,7 @@ export default (props: any) => {
   const [gasPrice, setGasPrice]: [any, any] = useState();
   const [syncing, setSyncing]: [any, any] = useState();
   const [peerCount, setPeerCount]: [any, any] = useState();
-  const [pendingTransctions, setPendingTransactions]: [any, any] = useState();
+  const [pendingTransactions, setPendingTransactions]: [any, any] = useState([]);
 
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
@@ -77,6 +77,15 @@ export default (props: any) => {
       setBlocks(removeNull);
     });
   }, [blockNumber, erpc]);
+
+  useInterval(() => {
+    if (!erpc) { return; }
+
+    erpc.eth_pendingTransactions().then((p) => {
+      setPendingTransactions(p);
+      setPendingTransactionsLength(p.length);
+    });
+  }, 5000, true);
 
   useInterval(() => {
     if (!erpc) { return; }
@@ -141,7 +150,7 @@ export default (props: any) => {
             </ChartCard>
           </Grid>
           <Grid key="pending-tx" item>
-            <ChartCard title={t('Pending Transactions')}>
+            <ChartCard title="Pending Transactions">
               <Typography variant="h4">{pendingTransctionsLength}</Typography>
             </ChartCard>
           </Grid>
@@ -166,7 +175,7 @@ export default (props: any) => {
       </Grid>
       <br />
 
-      <PendingContainer />
+      <PendingContainer pending={pendingTransactions} />
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
