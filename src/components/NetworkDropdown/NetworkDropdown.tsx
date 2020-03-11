@@ -41,41 +41,48 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
     setAnchorEl(null);
   };
 
-  const networks = [{
-    name: 'local',
-    url: 'http://localhost:5005/api/eth/request',
-    summary: 'your local node',
-  },
-  {
-    name: 'Node 1',
-    url: 'http://192.168.1.45:5005/api/eth/request',
-    summary: 'Testnet node 1',
-  },
-  {
-    name: 'Node 2',
-    url: 'http://192.168.1.46:5005/api/eth/request',
-    summary: 'Testnet node 2',
-  },
-  {
-    name: 'Node 3',
-    url: 'http://192.168.1.47:5005/api/eth/request',
-    summary: 'Testnet node 3',
-  },
-  {
-    name: 'Alex',
-    url: 'http://192.168.1.232:5005/api/eth/request',
-    summary: 'Alex\'s node',
-  },
-  {
-    name: 'Stephen',
-    url: 'http://192.168.1.233:5005/api/eth/request',
-    summary: 'Stephen\'s node',
-  },
-  {
-    name: 'Sudhir',
-    url: 'http://192.168.1.40:5005/api/eth/request',
-    summary: 'Sudhir\'s node',
-  }];
+  const networks = [
+  //   {
+  //   name: 'local',
+  //   url: 'http://localhost:5005/api/eth/request',
+  //   summary: 'your local node',
+  // },
+    {
+      name: 'Node 1',
+      url: 'http://77.68.110.194:5005/api/eth/request',
+      summary: 'Testnet node 1',
+    },
+    {
+      name: 'Node 2',
+      url: 'http://77.68.110.195:5005/api/eth/request',
+      summary: 'Testnet node 2',
+    },
+    {
+      name: 'Node 3',
+      url: 'http://77.68.110.196:5005/api/eth/request',
+      summary: 'Testnet node 3',
+    },
+    {
+      name: 'Node 4',
+      url: 'http://77.68.110.197:5005/api/eth/request',
+      summary: 'Testnet node 3',
+    },
+  // {
+  //   name: 'Alex',
+  //   url: 'http://192.168.1.232:5005/api/eth/request',
+  //   summary: 'Alex\'s node',
+  // },
+  // {
+  //   name: 'Stephen',
+  //   url: 'http://192.168.1.233:5005/api/eth/request',
+  //   summary: 'Stephen\'s node',
+  // },
+  // {
+  //   name: 'Sudhir',
+  //   url: 'http://192.168.1.40:5005/api/eth/request',
+  //   summary: 'Sudhir\'s node',
+  // }
+  ];
 
   return (
     <>
