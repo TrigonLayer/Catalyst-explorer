@@ -42,11 +42,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
   };
 
   const networks = [
-  //   {
-  //   name: 'local',
-  //   url: 'http://localhost:5005/api/eth/request',
-  //   summary: 'your local node',
-  // },
+
     {
       name: 'Node 1',
       url: 'http://77.68.110.194:5005/api/eth/request',
@@ -66,6 +62,16 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
       name: 'Node 4',
       url: 'http://77.68.110.197:5005/api/eth/request',
       summary: 'Testnet node 3',
+    },
+    {
+      name: 'Node 5',
+      url: 'http://77.68.110.13:5005/api/eth/request',
+      summary: 'Non POA node',
+    },
+    {
+      name: 'local',
+      url: 'http://localhost:5005/api/eth/request',
+      summary: 'your local node',
     },
   // {
   //   name: 'Alex',

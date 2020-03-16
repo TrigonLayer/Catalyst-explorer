@@ -85,7 +85,17 @@ function App() {
     {
       name: 'Node 4',
       url: 'http://77.68.110.197:5005/api/eth/request',
-      summary: 'Testnet node 3',
+      summary: 'Testnet node 4',
+    },
+    {
+      name: 'Node 5',
+      url: 'http://77.68.110.13:5005/api/eth/request',
+      summary: 'Non POA node',
+    },
+    {
+      name: 'local',
+      url: 'http://localhost:5005/api/eth/request',
+      summary: 'your local node',
     },
 
   // {
