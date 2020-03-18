@@ -11,6 +11,16 @@ export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> =>
   return Promise.all(promises);
 };
 
+export const getTxs = (txHashes: any[], erpc: ERPC): Promise<any[]> => {
+  const promises: any[] = [];
+  txHashes.forEach((hash: any) => {
+    promises.push(erpc.eth_getTransactionByHash(hash));
+  });
+  const txs = Promise.all(promises);
+  console.log(txs);
+  return txs;
+};
+
 export const useBlockNumber = (erpc: ERPC | undefined) => {
   const [blockNumber, setBlockNumber]: [any, any] = React.useState();
   useInterval(() => {

@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import EthereumJSONRPC from '@etclabscore/ethereum-json-rpc';
 
 import {
   Table, TableBody, TableCell, TableHead, TableRow,
 } from '@material-ui/core';
 import { hexToNumber } from '@etclabscore/eserialize';
+import useMultiGethStore from '../../stores/useMultiGethStore';
+import { getTxs } from '../../helpers';
 
 function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolean }) {
   return (
@@ -64,6 +67,11 @@ export interface ITxListProps {
 
 function TxList(props: ITxListProps) {
   const { showBlockNumber, transactions } = props;
+  // const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+
+  // const txs = (transactions.length > 0 && transactions[0].hash)
+  //   ? transactions
+  //   : await getTxs(transactions, erpc);
   return (
     <Table>
       <TableHead>

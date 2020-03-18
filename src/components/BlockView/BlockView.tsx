@@ -11,7 +11,7 @@ import {
 import TxList from '../TxList';
 
 function BlockView(props: any) {
-  const { block } = props;
+  const { block, transactions } = props;
   const history = useHistory();
   const { t } = useTranslation();
 
@@ -21,7 +21,7 @@ function BlockView(props: any) {
 
   const {
     timestamp, hash, parentHash, miner, nonce, difficulty,
-    extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
+    extraData, stateRoot, transactionsRoot, receiptsRoot,
     gasUsed, gasLimit, size,
   } = block;
 
