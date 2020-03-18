@@ -118,11 +118,6 @@ function BlockView(props: any) {
           </TableRow>
 
           <TableRow>
-            <TableCell>{t('Difficulty')}</TableCell>
-            <TableCell>{hexToNumber(difficulty)}</TableCell>
-          </TableRow>
-
-          <TableRow>
             <TableCell>{t('Extra Data')}</TableCell>
             <TableCell>{hexToString(extraData)}</TableCell>
           </TableRow>

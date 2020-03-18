@@ -39,7 +39,7 @@ const AddressTransactions: React.FC<IProps> = (props) => {
       </Grid>
       <Grid container justify="flex-end">
         <Typography>
-          Showing block range:
+          Showing delta range:
           {' '}
           {to}
           {' '}
@@ -52,7 +52,7 @@ const AddressTransactions: React.FC<IProps> = (props) => {
       {(!transactions || transactions.length === 0)
         && (
         <Grid container style={{ padding: '15px' }}>
-          <Typography>{t('No Transactions for this block range.')}</Typography>
+          <Typography>{t('No Transactions for this delta range.')}</Typography>
         </Grid>
         )}
     </div>

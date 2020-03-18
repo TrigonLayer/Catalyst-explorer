@@ -54,7 +54,7 @@ const MinerStats: React.FC<IProps> = ({ blocks }) => {
   return (
     <Grid container justify="space-evenly">
       <Grid key="uncles" item xs={12} md={4} lg={4}>
-        <ChartCard title={t('Miners by address')}>
+        <ChartCard title={t('Miners by Address')}>
           <VictoryPie
             cornerRadius={1}
             // innerRadius={50}

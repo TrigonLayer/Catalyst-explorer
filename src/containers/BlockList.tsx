@@ -38,7 +38,7 @@ export default function BlockListContainer(props: IProps) {
     <div style={style} className="MuiCardContent-root">
       <Grid container justify="flex-start">
         <Grid item xs={6}>
-          <h2 style={{ padding: '0 16px' }}>Recent Blocks</h2>
+          <h2 style={{ padding: '0 16px' }}>Recent Deltas</h2>
         </Grid>
 
         <Grid container xs={6} justify="flex-end">

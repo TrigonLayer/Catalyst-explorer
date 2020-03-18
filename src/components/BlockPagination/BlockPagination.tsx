@@ -32,7 +32,7 @@ const BlockPagination: React.FC<IProps> = (props) => {
           Showing
           {(to - from) + 1}
           {' '}
-          Block Range:
+          Delta Range:
           <b>{to}</b>
           {' '}
           -

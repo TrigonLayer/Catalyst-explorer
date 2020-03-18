@@ -145,7 +145,7 @@ export default (props: any) => {
               <Typography variant="h4">
                 {weiToGwei(hexToNumber(gasPrice))}
                 {' '}
-                Gwei
+                nKAT
               </Typography>
             </ChartCard>
           </Grid>

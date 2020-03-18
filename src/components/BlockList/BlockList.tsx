@@ -17,6 +17,13 @@ function BlockList({ blocks }: any) {
     return null;
   }
   const sortedBlocks = blocks.sort((a: { number: number }, b: { number: number }) => b.number - a.number);
+
+  const nodeList: any = {
+    '0x91470b2c2ab22f6eccf7b347138a43c781b8b831': 'Node 1',
+    '0xa6010807238391c364f46c2def95cd8d7eab5822': 'Node 2',
+    '0x688f97f9b36bec8dcaafc0a50b58279fc1569bed': 'Node 3',
+    '0x201e345c13ab259886a5ac2076656bcc148a1e28': 'Node 4',
+  };
   return (
     <div style={{ width: '100%', overflowX: 'auto' }}>
       <Table>
@@ -76,7 +83,12 @@ function BlockList({ blocks }: any) {
                       {authorHashShort}
                     </Link>
                     &nbsp;
-                    <sup>{hexToString(b.extraData).substring(0, 20)}</sup>
+                    <sup>
+                      {
+                       nodeList[b.miner]
+                      }
+
+                    </sup>
                   </Typography>
                 </TableCell>
                 <TableCell component="th" scope="row">

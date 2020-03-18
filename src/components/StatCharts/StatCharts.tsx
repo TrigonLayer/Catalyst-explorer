@@ -2,10 +2,9 @@ import React from 'react';
 import BigNumber from 'bignumber.js';
 import { hexToNumber } from '@etclabscore/eserialize';
 import { Grid } from '@material-ui/core';
-import { VictoryLine, VictoryBar, VictoryChart } from 'victory';
+import { VictoryBar, VictoryChart } from 'victory';
 import { useTranslation } from 'react-i18next';
 import ChartCard from '../ChartCard';
-import { hashesToGH } from '../formatters';
 
 const config = {
   blockTime: 15, // seconds
@@ -17,16 +16,6 @@ const config = {
 const blockMapGasUsed = (block: any) => ({
   x: hexToNumber(block.number),
   y: new BigNumber(block.gasUsed).dividedBy(1000000),
-});
-
-const blockMapUncles = (block: any) => ({
-  x: hexToNumber(block.number),
-  y: block.uncles.length,
-});
-
-const blockMapHashRate = (block: any) => ({
-  x: hexToNumber(block.number),
-  y: hashesToGH(new BigNumber(block.difficulty, 16).dividedBy(config.blockTime)),
 });
 
 const blockMapTransactionCount = (block: any) => ({

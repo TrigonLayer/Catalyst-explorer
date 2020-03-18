@@ -68,7 +68,7 @@ function TxList(props: ITxListProps) {
     <Table>
       <TableHead>
         <TableRow>
-          {showBlockNumber && <TableCell>Block Number</TableCell>}
+          {showBlockNumber && <TableCell>Delta Number</TableCell>}
           <TableCell>Hash</TableCell>
           <TableCell>From</TableCell>
           <TableCell>To</TableCell>
