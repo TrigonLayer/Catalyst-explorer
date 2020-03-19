@@ -65,7 +65,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
     },
     {
       name: 'Node 5',
-      url: 'http://77.68.110.13:5005/api/eth/request',
+      url: 'http://77.68.110.49:5005/api/eth/request',
       summary: 'Non POA node',
     },
     {
