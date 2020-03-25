@@ -72,7 +72,7 @@ function TxView(props: ITxViewProps) {
             <TableCell>
               {hexToNumber(tx.gasPrice)}
               {' '}
-              Wei
+              Mol
             </TableCell>
           </TableRow>
 
@@ -81,7 +81,7 @@ function TxView(props: ITxViewProps) {
             <TableCell>
               {unit.fromWei(tx.value, 'ether')}
               {' '}
-              Ether
+              Katal
             </TableCell>
           </TableRow>
 
@@ -197,7 +197,7 @@ function TxView(props: ITxViewProps) {
               <TableCell>
                 {unit.fromWei(tx.value, 'ether')}
                 {' '}
-                Ether
+                Katal
               </TableCell>
             </TableRow>
 

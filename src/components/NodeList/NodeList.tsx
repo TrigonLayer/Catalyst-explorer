@@ -36,7 +36,7 @@ function NodeList(props: IProps) {
             {' '}
             gasPrice:
             {' '}
-            {n.gasPrice ? `${n.gasPrice.toString()} Wei` : ''}
+            {n.gasPrice ? `${n.gasPrice.toString()} Mol` : ''}
           </div>
           <div>
             chain id:
