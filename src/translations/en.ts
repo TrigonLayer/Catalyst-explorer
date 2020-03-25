@@ -38,7 +38,7 @@ export default {
   Block: 'Delta',
   'Gas Used': 'Gas Used',
   'Cumulative Gas Used': 'Cumulative Gas Used',
-  'Value in Ether': 'Value in Ether',
+  'Value in Ether': 'Value in Katal',
   From: 'From',
   To: 'To',
   'Contract Address': 'Contract Address',
