@@ -20,7 +20,7 @@ const PagedMenu: React.FC<IPagedMenuProps> = ({ onChange }) => {
   const { t } = useTranslation();
   const nameMap = {
     'service-runner': t('Service Runner RPC Url'),
-    'ethereum-rpc': t('Ethereum RPC Url'),
+    'ethereum-rpc': t('Catalyst RPC Url'),
   };
 
   if (selected) {
@@ -45,14 +45,14 @@ const PagedMenu: React.FC<IPagedMenuProps> = ({ onChange }) => {
 
   return (
     <>
-      <MenuItem onClick={() => setSelected('service-runner')}>
+      {/* <MenuItem onClick={() => setSelected('service-runner')}>
         <ListItemText>
           {t('Service Runner RPC')}
         </ListItemText>
         <ListItemSecondaryAction>
           <NavigateNext />
         </ListItemSecondaryAction>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={() => setSelected('ethereum-rpc')}>
         <ListItemText>
           {t('Ethereum RPC')}
