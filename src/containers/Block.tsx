@@ -15,9 +15,11 @@ export default function Block(props: any) {
     if (!erpc) { return; }
     erpc.eth_getBlockByHash(hash, true).then((bloc) => {
       setBlock(bloc);
-      const txs = (bloc.transactions.length > 0 && typeof bloc.transactions[0] === 'object')
-        ? bloc.transactions
-        : getTxs(bloc.transactions, erpc).then(setTransactions);
+      if (bloc.transactions.length > 0 && typeof bloc.transactions[0] === 'object') {
+        setTransactions(bloc.transactions);
+      } else {
+        getTxs(bloc.transactions, erpc).then(setTransactions);
+      }
     });
   }, [hash, erpc]);
   if (!block) { return (<CircularProgress />); }
